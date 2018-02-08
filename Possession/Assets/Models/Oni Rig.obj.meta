@@ -1,29 +1,24 @@
 fileFormatVersion: 2
-guid: 79de30a3325b8ff4caf4797ac373b83b
-timeCreated: 1517258552
+guid: d838bf1c63ab9694688ebe14a29df5d8
+timeCreated: 1517269200
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Camera
-    100002: Lamp
-    100004: //RootNode
-    100006: Plane
-    400000: Camera
-    400002: Lamp
-    400004: //RootNode
-    400006: Plane
-    2000000: Camera
-    2300000: Plane
-    3300000: Plane
-    4300000: Plane
-    10800000: Lamp
+    100000: default
+    100002: //RootNode
+    400000: default
+    400002: //RootNode
+    2300000: default
+    3300000: default
+    4300000: default
+    9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 66d2abed57e7b084b9114af07fdcbd1e, type: 2}
+      name: defaultMat
+    second: {fileID: 2100000, guid: ab0e06006196de94ca803038fc60151a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -33,16 +28,17 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -95,7 +91,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

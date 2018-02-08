@@ -88,6 +88,10 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
+<<<<<<< Updated upstream
+    m_ShowResolutionOverlay: 1
+=======
+>>>>>>> Stashed changes
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -409,7 +413,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 182821586}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8feadc4fe55cd2e4ca3913753fd6b001, type: 3}
   m_Name: 
@@ -683,7 +687,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 583773437}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8feadc4fe55cd2e4ca3913753fd6b001, type: 3}
   m_Name: 
@@ -891,7 +895,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1882ece52805ec47b0f1acb141088a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dead: 0
   health: 40
   AliveMaterial: {fileID: 2100000, guid: c42d2bca113ed124fb66b2127b079da7, type: 2}
   CorpseMaterial: {fileID: 2100000, guid: a07d16071317fdc4a82aea662858b85a, type: 2}
@@ -1004,7 +1007,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 856517630}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c6954bd69776d641a4f1ca935ef6233, type: 3}
   m_Name: 
@@ -1057,6 +1060,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -1135,9 +1139,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 0
-  m_InflateMesh: 0
+  m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1109824524
@@ -1221,9 +1225,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 0
-  m_InflateMesh: 0
+  m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1205918576
@@ -1375,7 +1379,6 @@ GameObject:
   - component: {fileID: 1347546195}
   - component: {fileID: 1347546200}
   - component: {fileID: 1347546201}
-  - component: {fileID: 1347546202}
   m_Layer: 9
   m_Name: Oni1
   m_TagString: Oni
@@ -1494,24 +1497,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1882ece52805ec47b0f1acb141088a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dead: 0
   health: 25
   AliveMaterial: {fileID: 2100000, guid: c42d2bca113ed124fb66b2127b079da7, type: 2}
   CorpseMaterial: {fileID: 2100000, guid: a07d16071317fdc4a82aea662858b85a, type: 2}
---- !u!114 &1347546202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1347546194}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a731aca231218c44b58a1ad04f21dfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  form: 
-  follow: 0
 --- !u!1 &1920029566
 GameObject:
   m_ObjectHideFlags: 0
