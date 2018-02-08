@@ -1069,7 +1069,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 856517630}
   m_LocalRotation: {x: -0, y: -0, z: 0.0000000018626449, w: 1}
-  m_LocalPosition: {x: -13.35, y: 6.080002, z: -12.98999}
+  m_LocalPosition: {x: -28, y: 6.080002, z: -12.98999}
   m_LocalScale: {x: 1, y: 1, z: 1.2828293}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1155,8 +1155,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1109824521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 1, z: 0.5}
+  m_LocalPosition: {x: 250, y: 0, z: 0}
+  m_LocalScale: {x: 60, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1241,8 +1241,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1205918573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: 2.5}
-  m_LocalScale: {x: 60, y: 20, z: 1}
+  m_LocalPosition: {x: 250, y: 10, z: 2.5}
+  m_LocalScale: {x: 600, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -1260,6 +1260,7 @@ GameObject:
   - component: {fileID: 1333994840}
   - component: {fileID: 1333994839}
   - component: {fileID: 1333994838}
+  - component: {fileID: 1333994844}
   m_Layer: 0
   m_Name: Izanagi
   m_TagString: Untagged
@@ -1362,6 +1363,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1333994844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1333994837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21b3e120c62b4e84295589fd63167f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1 &1347546194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,13 +1551,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1920029566}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84836afb76da68f44ac612ef5e811378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  sec: 10
 --- !u!23 &1920029569
 MeshRenderer:
   m_ObjectHideFlags: 0

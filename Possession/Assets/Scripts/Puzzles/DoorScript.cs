@@ -28,7 +28,7 @@ public class DoorScript : MonoBehaviour
     {
         if (isOpenable)
         {
-            isPlayerIn = (player.transform.position.x - transform.position.x > 0);
+            isPlayerIn = (player.transform.position.x - transform.position.x > 0 && player.transform.position.x - transform.position.x < 5);
             if (Input.GetKeyDown("space"))
             {
                 if (!isLock && !isOpen)
@@ -69,6 +69,10 @@ public class DoorScript : MonoBehaviour
         if (col.gameObject.tag == "Oni")
         {
             Destroy(this.gameObject);
+        }
+        if (col.gameObject.name == "Izanami")
+        {
+            player.transform.position += Vector3.right;
         }
     }
 }

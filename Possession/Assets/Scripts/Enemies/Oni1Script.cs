@@ -32,7 +32,7 @@ public class Oni1Script : MonoBehaviour {
 
 	void Damage(int amount){
 		health -= amount;
-		print (health);
+		//print (health);
 
 		if (health <= 0) {
 			Die ();
