@@ -27,7 +27,7 @@ public class SwitchScript : MonoBehaviour {
         otherTriggered = otherSwitch.GetComponent<SwitchScript>().isTriggered;
 		if (isTriggered || otherTriggered)
         {
-            if (bridge.transform.position.y < -0.5)
+            if (bridge.transform.position.y < 0)
             {
                 bridge.transform.Translate(Vector3.up * Time.deltaTime);
             } else
