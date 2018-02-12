@@ -13,6 +13,11 @@ public class Izanagi : MonoBehaviour {
     Quaternion rot2;
 
     public bool follow;
+    public bool shielded;
+
+
+    bool CD;
+    bool press;
 
     public static Izanagi Get()
     {
@@ -26,23 +31,75 @@ public class Izanagi : MonoBehaviour {
     // Use this for initialization
     void Start () {
         s_izanami = Izanami.Get();
-		anim = GetComponentInChildren<Animator> ();
+		anim = GetComponent<Animator> ();
         follow = false;
         m_Rigidbody = GetComponent<Rigidbody>();
         rot = transform.rotation;
         rot2 = Quaternion.Inverse(rot);
+        CD = false;
+        press = false;
+        shielded = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (!CD)
+        {
+            move();
+        }
+        attack();
+        
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
         pos.x = Mathf.Clamp01(pos.x);
         pos.y = Mathf.Clamp01(pos.y);
         transform.position = Camera.main.ViewportToWorldPoint(pos);
 
-        if (!s_izanami.follow)
+       
+
+        
+    }
+
+    public void attack()
+    {
+        if (Input.GetAxis("NagiAttack") != 0)
+        {
+            press = true;
+        }
+        else if (Input.GetAxis("NagiAttack") == 0)
+        {
+            if (press == true)
+            {
+                
+                if (!CD)
+                {
+                    StartCoroutine("slice");
+                    StartCoroutine("cooldown");
+                }
+                press = false;
+            }
+        }
+    }
+
+    IEnumerator slice()
+    {
+        // suspend execution for 5 seconds
+        anim.SetBool("isAttacking", true);
+        yield return new WaitForSeconds(0.25f);
+        anim.SetBool("isAttacking", false);
+    }
+
+    IEnumerator cooldown()
+    {
+        // suspend execution for 5 seconds
+        CD = true;
+        yield return new WaitForSeconds(0.5f);
+        CD = false;
+    }
+
+    void move()
+    {
+        if (!s_izanami.following)
         {
             var x = Input.GetAxis("NagiX") * Time.deltaTime * speed;
             if (x > 0)
@@ -61,8 +118,9 @@ public class Izanagi : MonoBehaviour {
             {
                 anim.SetBool("isWalking", false);
             }
-            
-        } else if (s_izanami.form == "ghost")
+
+        }
+        else if (s_izanami.form == "ghost")
         {
             var x = Input.GetAxis("NamiX") * Time.deltaTime * speed;
             transform.Translate(x, 0, 0);

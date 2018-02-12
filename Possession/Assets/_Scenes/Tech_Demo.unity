@@ -1754,6 +1754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   follow: 0
+  shielded: 0
 --- !u!54 &1251664885
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1944,7 +1945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   form: 
-  follow: 0
+  following: 0
 --- !u!1 &1448782375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2183,7 +2184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   form: 
-  follow: 0
+  following: 0
 --- !u!114 &1920029568
 MonoBehaviour:
   m_ObjectHideFlags: 0
