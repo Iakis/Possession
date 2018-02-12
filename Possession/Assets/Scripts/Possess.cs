@@ -36,29 +36,22 @@ public class Possess : MonoBehaviour {
 
     void possess()
     {
-        if (Input.GetAxis("NamiInteract") != 0)
+        if (Input.GetButtonUp("NamiInteract"))
         {
-            press = true;
-        } else if (Input.GetAxis("NamiInteract") == 0)
-        {
-            if (press == true)
+            if (host != null)
             {
-                if (host != null)
-                {
-                    //DoorScript m_door = DoorScript.Get();
-                    //Debug.Log(host);
-                    //m_door.player = host.transform;
-                    //Debug.Log(m_door.player);
-                    //host.GetComponent<Oni1Script>().dead = false;
-                    host.AddComponent<Izanami>().enabled = true;
-                    host.GetComponent<Oni1Script>().enabled = false;
-                    host.GetComponent<Animator>().enabled = false;
-                    host.transform.rotation = Quaternion.identity;
-                    Destroy(this.gameObject);
+                //DoorScript m_door = DoorScript.Get();
+                //Debug.Log(host);
+                //m_door.player = host.transform;
+                //Debug.Log(m_door.player);
+                //host.GetComponent<Oni1Script>().dead = false;
+                host.AddComponent<Izanami>().enabled = true;
+                host.GetComponent<Oni1Script>().enabled = false;
+                host.GetComponent<Animator>().enabled = false;
+                host.transform.rotation = Quaternion.identity;
+                Destroy(this.gameObject);
 
-                }
-                
             }
-        }
+        } 
     }
 }
