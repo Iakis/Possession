@@ -7,7 +7,7 @@ public class Izanagi : MonoBehaviour {
     public float speed = 10;
     static Izanagi s_izanagi;
     static Izanami s_izanami;
-	//Animator anim;
+	Animator anim;
 
     public bool follow;
 
@@ -23,7 +23,7 @@ public class Izanagi : MonoBehaviour {
     // Use this for initialization
     void Start () {
         s_izanami = Izanami.Get();
-		//anim = GetComponent<Animator> ();
+		anim = GetComponent<Animator> ();
         follow = false;
     }
 	
@@ -38,11 +38,11 @@ public class Izanagi : MonoBehaviour {
         if (!s_izanami.follow)
         {
             var x = Input.GetAxis("NagiX") * Time.deltaTime * speed;
-			/*if (x > 0) {
+			if (x > 0) {
 				anim.SetBool ("isWalking", true);
 			} else {
 				anim.SetBool ("isWalking", false);
-			}*/
+			}
             transform.Translate(x, 0, 0);
         } else
         {
