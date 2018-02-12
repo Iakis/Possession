@@ -85,7 +85,7 @@ public class Izanagi : MonoBehaviour {
     {
         // suspend execution for 5 seconds
         anim.SetBool("isAttacking", true);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         anim.SetBool("isAttacking", false);
     }
 
@@ -93,7 +93,7 @@ public class Izanagi : MonoBehaviour {
     {
         // suspend execution for 5 seconds
         CD = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
         CD = false;
     }
 
