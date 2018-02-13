@@ -6,6 +6,7 @@ public class Possess : MonoBehaviour {
 
     static Izanami s_izanami;
     bool press = false;
+    CameraScript cam;
 
     GameObject host;
 
@@ -13,6 +14,7 @@ public class Possess : MonoBehaviour {
     void Start () {
         s_izanami = Izanami.Get();
         host = null;
+        cam = CameraScript.get();
     }
 	
 	// Update is called once per frame
@@ -28,8 +30,13 @@ public class Possess : MonoBehaviour {
         int i = 0;
         while (i < hitColliders.Length)
         {
-            host = hitColliders[i].gameObject;
+            if (hitColliders[i].gameObject.name != "sword")
+            {
+                host = hitColliders[i].gameObject;
+                
+            }
             return;
+
         }
         host = null;
     }
@@ -45,6 +52,7 @@ public class Possess : MonoBehaviour {
                 //m_door.player = host.transform;
                 //Debug.Log(m_door.player);
                 //host.GetComponent<Oni1Script>().dead = false;
+                cam.player = host;
                 host.AddComponent<Izanami>().enabled = true;
                 host.GetComponent<Oni1Script>().enabled = false;
                 host.GetComponent<Animator>().enabled = false;

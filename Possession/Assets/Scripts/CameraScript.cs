@@ -11,11 +11,23 @@ public class CameraScript : MonoBehaviour
     private float timer;
     public Transform Lock;
 
+    static CameraScript cam;
+
     // Use this for initialization
     void Start()
     {
         offset = transform.position - player.transform.position;
         timer = Time.time;
+    }
+
+    public static CameraScript get()
+    {
+        return cam;
+    }
+
+    CameraScript()
+    {
+        cam = this;
     }
 
     // Update is called once per frame
