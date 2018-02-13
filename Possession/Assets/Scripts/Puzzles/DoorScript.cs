@@ -35,7 +35,7 @@ public class DoorScript : MonoBehaviour
                 if (!isLock && !isOpen && isPlayerIn)
                 {
                     Debug.Log("Opening the door when it's not locked and it's closed");
-                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(0f, 2f, 1.5f), Time.deltaTime * 1000f);
+                    transform.position += new Vector3(0f, 0f, 1.5f);
                     isOpen = true;
                 }
                 //if (isOpen)
@@ -47,7 +47,7 @@ public class DoorScript : MonoBehaviour
                 if (isPlayerIn && isLock)
                 {
                     Debug.Log("Unlock the door when it's locked and player is inside the door");
-                    Lock.position = Vector3.MoveTowards(Lock.position, new Vector3(0.45f, 1.5f, -1.43f), 1000f * Time.deltaTime);
+                    Lock.position += new Vector3(0.45f, 0f, -1.43f);
                     isLock = false;
                 }
             }
