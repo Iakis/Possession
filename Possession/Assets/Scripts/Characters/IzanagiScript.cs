@@ -6,6 +6,7 @@ public class IzanagiScript : MonoBehaviour
 {
 
     public float speed = 10;
+    float y;
 
     // Use this for initialization
     void Start()
@@ -20,4 +21,5 @@ public class IzanagiScript : MonoBehaviour
         var z = Input.GetAxis("NagiKeyboardY") * Time.deltaTime * speed * 0.5f;
         transform.Translate(0, 0, z);
     }
+
 }
