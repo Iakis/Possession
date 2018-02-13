@@ -50,10 +50,10 @@ public class Izanagi : MonoBehaviour {
         }
         attack();
         
-        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        pos.x = Mathf.Clamp01(pos.x);
-        pos.y = Mathf.Clamp01(pos.y);
-        transform.position = Camera.main.ViewportToWorldPoint(pos);
+        //Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        //pos.x = Mathf.Clamp01(pos.x);
+        //pos.y = Mathf.Clamp01(pos.y);
+        //transform.position = Camera.main.ViewportToWorldPoint(pos);
 
        
 
@@ -105,18 +105,18 @@ public class Izanagi : MonoBehaviour {
             if (x > 0)
             {
                 transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.time * speed);
-                anim.SetBool("isWalking", true);
+                //anim.SetBool("isWalking", true);
                 transform.Translate(0, 0, x);
             }
             else if (x < 0)
             {
                 transform.rotation = Quaternion.Lerp(transform.rotation, rot2, Time.time * speed);
-                anim.SetBool("isWalking", true);
+                //anim.SetBool("isWalking", true);
                 transform.Translate(0, 0, -x);
             }
             else
             {
-                anim.SetBool("isWalking", false);
+                //anim.SetBool("isWalking", false);
             }
 
         }
