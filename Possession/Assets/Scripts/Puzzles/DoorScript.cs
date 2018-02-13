@@ -10,11 +10,9 @@ public class DoorScript : MonoBehaviour
     public bool isOpen = false;
     public bool isPlayerIn = false;
     public bool isOpenable = false;
-    public Transform player;
+    public Transform Izanami;
+    public Transform Izanagi;
     Rigidbody rb;
-
-    static DoorScript s_door;
-    static Izanami m_izanami;
 
     // Use this for initialization
     void Start()
@@ -24,32 +22,15 @@ public class DoorScript : MonoBehaviour
         {
             isOpenable = true;
         }
-        //m_izanami = Izanami.Get();
-        //player = m_izanami.transform;
-        //Debug.Log(m_izanami.gameObject.name);
-        
     }
 
-    DoorScript()
-    {
-        s_door = this;
-        
-        
-    }
-
-    public static DoorScript Get()
-    {
-        return s_door;
-    }
     // Update is called once per frame
     void Update()
     {
         if (isOpenable)
-		{	if (player) {
-				isPlayerIn = (player.transform.position.x - transform.position.x > 0);
-
-			}
-            if (Input.GetKeyDown("space"))
+        {
+            isPlayerIn = (Izanami.transform.position.x - transform.position.x > 0 && Izanami.transform.position.x - transform.position.x < 5);
+            if (Input.GetKeyDown("space") || Input.GetButtonUp("NamiInteract"))
             {
                 if (!isLock && !isOpen)
                 {
@@ -89,6 +70,14 @@ public class DoorScript : MonoBehaviour
         if (col.gameObject.tag == "Oni")
         {
             Destroy(this.gameObject);
+        }
+        if (col.gameObject.name == "Izanami")
+        {
+            Izanami.transform.position += Vector3.right;
+        }
+        if (col.gameObject.name == "Izanagi")
+        {
+            Izanagi.transform.position += Vector3.left;
         }
     }
 }

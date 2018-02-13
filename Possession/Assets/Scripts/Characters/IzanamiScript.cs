@@ -5,21 +5,18 @@ using UnityEngine;
 public class IzanamiScript : MonoBehaviour {
 
     public float speed = 10;
-    public float sec = 10f;
-    private float timer;
+    float y;
 
 	// Use this for initialization
 	void Start () {
-        timer = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        timer += Time.deltaTime;
-        if (timer > sec)
-        {
-            var x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-            transform.Translate(x, 0, 0);
-        }
+        var x = Input.GetAxis("NamiKeyboardX") * Time.deltaTime * speed;
+        transform.Translate(x, 0, 0);
+        var z = Input.GetAxis("NamiKeyboardY") * Time.deltaTime * speed * 0.5f;
+        transform.Translate(0, 0, z);
     }
+
 }
