@@ -32,7 +32,7 @@ public class DoorScript : MonoBehaviour
             isPlayerIn = (Izanami.transform.position.x - transform.position.x > 0 && Izanami.transform.position.x - transform.position.x < 5);
             if (Input.GetKeyDown("space") || Input.GetButtonUp("NamiInteract"))
             {
-                if (!isLock && !isOpen)
+                if (!isLock && !isOpen && isPlayerIn)
                 {
                     Debug.Log("Opening the door when it's not locked and it's closed");
                     transform.position = Vector3.MoveTowards(transform.position, new Vector3(0f, 2f, 1.5f), Time.deltaTime * 1000f);
