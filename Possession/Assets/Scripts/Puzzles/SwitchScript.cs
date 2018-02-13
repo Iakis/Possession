@@ -17,10 +17,12 @@ public class SwitchScript : MonoBehaviour {
     public Transform Izanami;
     public Transform Izanagi;
     private float rangeMin, rangeMax;
+	private Rigidbody rb;
 
     // Use this for initialization
     void Start () {
         //Debug.Log("switch is not triggered");
+		rb = GetComponent<Rigidbody>();
         isTriggered = false;
         originPosition = bridge.transform.position;
         isUp = false;
@@ -34,6 +36,7 @@ public class SwitchScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		rb.WakeUp();
         otherTriggered = otherSwitch.GetComponent<SwitchScript>().isTriggered;
 		if (isTriggered || otherTriggered)
         {
