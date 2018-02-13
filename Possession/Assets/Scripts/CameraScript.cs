@@ -14,14 +14,14 @@ public class CameraScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //offset = transform.position - player.transform.position;
-        //timer = Time.time;
+        offset = transform.position - player.transform.position;
+        timer = Time.time;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        //timer += Time.deltaTime;
+        timer += Time.deltaTime;
         //if (timer > 0 && timer < 2)
         //{
         //    transform.Translate((Vector3.right * (Time.deltaTime * 10.0f)));
@@ -36,7 +36,7 @@ public class CameraScript : MonoBehaviour
         //}
         //else if (timer > sec)
         //{
-        //    transform.position = player.transform.position + offset;
+           transform.position = player.transform.position + offset;
         //}
     }
 }

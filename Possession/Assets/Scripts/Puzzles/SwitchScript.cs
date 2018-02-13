@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -12,6 +13,10 @@ public class SwitchScript : MonoBehaviour {
     public Vector3 originPosition;
     public bool isUp;
     public bool isDown;
+    public Transform River;
+    public Transform Izanami;
+    public Transform Izanagi;
+    private float rangeMin, rangeMax;
 
     // Use this for initialization
     void Start () {
@@ -20,7 +25,12 @@ public class SwitchScript : MonoBehaviour {
         originPosition = bridge.transform.position;
         isUp = false;
         isDown = true;
-	}
+        //Debug.Log(string.Format("({0}, {1}, {2})", River.transform.position.x, River.transform.position.y, River.transform.position.z));
+        RiverGenerator r = River.GetComponent<RiverGenerator>();
+        rangeMin = River.transform.position.x - r.gridSize;
+        rangeMax = River.transform.position.x + r.gridSize;
+        UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -41,10 +51,19 @@ public class SwitchScript : MonoBehaviour {
             }
         }
         else
-        {   
+        {
+            if (rangeMin < Izanami.position.x  && Izanami.position.x < rangeMax)
+            {
+                Izanami.transform.position += new Vector3(-(Izanami.position.x - rangeMin + 10), 0f, 0f);
+            }
+            if (rangeMin < Izanagi.position.x && Izanagi.position.x < rangeMax)
+            {
+                Izanagi.transform.position += new Vector3(-(Izanagi.position.x - rangeMin + 10), 0f, 0f);
+            }
             if (bridge.transform.position.y > originPosition.y)
             {
                 bridge.transform.Translate(Vector3.down * Time.deltaTime);
+
             } else
             {
                 if (!isDown)
@@ -59,7 +78,12 @@ public class SwitchScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Izanami" || col.gameObject.name == "Izanagi")
+        if (col.gameObject.name == "Izanami")
+        {
+            Debug.Log(string.Format("being stepped by {0}", col.gameObject.name));
+            isTriggered = true;
+        }
+        if (col.gameObject.name == "Izanagi")
         {
             Debug.Log(string.Format("being stepped by {0}", col.gameObject.name));
             isTriggered = true;
@@ -68,7 +92,12 @@ public class SwitchScript : MonoBehaviour {
 
     private void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.name == "Izanami" || col.gameObject.name == "Izanagi")
+        if (col.gameObject.name == "Izanami")
+        {
+            Debug.Log(string.Format("{0} just left", col.gameObject.name));
+            isTriggered = false;
+        }
+        if (col.gameObject.name == "Izanagi")
         {
             Debug.Log(string.Format("{0} just left", col.gameObject.name));
             isTriggered = false;

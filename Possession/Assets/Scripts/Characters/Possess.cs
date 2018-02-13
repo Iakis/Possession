@@ -36,7 +36,7 @@ public class Possess : MonoBehaviour {
 
     void possess()
     {
-        if (Input.GetButtonUp("NamiInteract"))
+        if (Input.GetButtonUp("NamiInteract") || Input.GetKeyDown("space"))
         {
             if (host != null)
             {

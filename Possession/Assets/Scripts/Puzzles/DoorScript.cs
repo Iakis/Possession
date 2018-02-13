@@ -10,7 +10,8 @@ public class DoorScript : MonoBehaviour
     public bool isOpen = false;
     public bool isPlayerIn = false;
     public bool isOpenable = false;
-    public Transform player;
+    public Transform Izanami;
+    public Transform Izanagi;
     Rigidbody rb;
 
     // Use this for initialization
@@ -28,8 +29,8 @@ public class DoorScript : MonoBehaviour
     {
         if (isOpenable)
         {
-            isPlayerIn = (player.transform.position.x - transform.position.x > 0 && player.transform.position.x - transform.position.x < 5);
-            if (Input.GetKeyDown("space"))
+            isPlayerIn = (Izanami.transform.position.x - transform.position.x > 0 && Izanami.transform.position.x - transform.position.x < 5);
+            if (Input.GetKeyDown("space") || Input.GetButtonUp("NamiInteract"))
             {
                 if (!isLock && !isOpen)
                 {
@@ -72,7 +73,11 @@ public class DoorScript : MonoBehaviour
         }
         if (col.gameObject.name == "Izanami")
         {
-            player.transform.position += Vector3.right;
+            Izanami.transform.position += Vector3.right;
+        }
+        if (col.gameObject.name == "Izanagi")
+        {
+            Izanagi.transform.position += Vector3.left;
         }
     }
 }
