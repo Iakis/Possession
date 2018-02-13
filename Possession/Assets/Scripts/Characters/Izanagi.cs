@@ -102,28 +102,34 @@ public class Izanagi : MonoBehaviour {
         if (!s_izanami.following)
         {
             var x = Input.GetAxis("NagiX") * Time.deltaTime * speed;
-            if (x > 0)
-            {
-                transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.time * speed);
-                //anim.SetBool("isWalking", true);
-                transform.Translate(0, 0, x);
-            }
-            else if (x < 0)
-            {
-                transform.rotation = Quaternion.Lerp(transform.rotation, rot2, Time.time * speed);
-                //anim.SetBool("isWalking", true);
-                transform.Translate(0, 0, -x);
-            }
-            else
-            {
-                //anim.SetBool("isWalking", false);
-            }
+            walk(x);
 
         }
         else if (s_izanami.form == "ghost")
         {
             var x = Input.GetAxis("NamiX") * Time.deltaTime * speed;
-            transform.Translate(x, 0, 0);
+            walk(x);
+
+        }
+    }
+
+    void walk (float x)
+    {
+        if (x > 0)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.time * speed);
+            anim.SetBool("isWalking", true);
+            transform.Translate(0, 0, x);
+        }
+        else if (x < 0)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot2, Time.time * speed);
+            anim.SetBool("isWalking", true);
+            transform.Translate(0, 0, -x);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
         }
     }
 }
