@@ -20,7 +20,6 @@ public class Izanagi : MonoBehaviour
     public float height;
     public float turnspeed;
 
-
     bool CD;
     bool press;
     bool isjumping;
@@ -57,6 +56,10 @@ public class Izanagi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        pos.x = Mathf.Clamp01(pos.x);
+        pos.y = Mathf.Clamp01(pos.y);
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         m_Rigidbody.AddForce(gravity, ForceMode.Acceleration);
         if (!CD)
@@ -64,11 +67,6 @@ public class Izanagi : MonoBehaviour
             move();
         }
         attack();
-
-        //Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        //pos.x = Mathf.Clamp01(pos.x);
-        //pos.y = Mathf.Clamp01(pos.y);
-        //transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 
     public void attack()
@@ -182,6 +180,7 @@ public class Izanagi : MonoBehaviour
     {
         anim.SetBool("idle", false);
         anim.SetBool("isWalking", true);
+
         if (x > 0)
         {
             if (transform.rotation == rot)

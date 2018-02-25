@@ -39,11 +39,6 @@ public class Izanami : MonoBehaviour
     public virtual void Update()
     {
 
-        //Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        //pos.x = Mathf.Clamp01(pos.x);
-        //pos.y = Mathf.Clamp01(pos.y);
-        //transform.position = Camera.main.ViewportToWorldPoint(pos);
-
         follow();
         if (following)
         {
@@ -135,6 +130,13 @@ public class Izanami : MonoBehaviour
 
     void move()
     {
+
+		Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+		Debug.Log (pos.x);
+		pos.x = Mathf.Clamp01(pos.x) ;
+		pos.y = Mathf.Clamp01(pos.y);
+		transform.position = Camera.main.ViewportToWorldPoint(pos);
+
         if (Input.GetAxis("NamiX") != 0)
         {
             var x = Input.GetAxis("NamiX") * Time.deltaTime * speed;
@@ -148,6 +150,12 @@ public class Izanami : MonoBehaviour
 
     void followMove()
     {
+		Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+		Debug.Log (pos.x);
+		pos.x = Mathf.Clamp01(pos.x) ;
+		pos.y = Mathf.Clamp01(pos.y);
+		transform.position = Camera.main.ViewportToWorldPoint(pos);
+
         if (m_izanagi.transform.position.x - this.transform.position.x > 1.0)
         {
             Vector3 start = new Vector3(this.transform.transform.position.x, this.transform.position.y, this.transform.position.z);
