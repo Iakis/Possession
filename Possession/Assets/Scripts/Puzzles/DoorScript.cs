@@ -12,12 +12,10 @@ public class DoorScript : MonoBehaviour
     public bool isOpenable = false;
     public Transform Izanami;
     public Transform Izanagi;
-    Rigidbody rb;
 
     // Use this for initialization
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody>();
         if (gameObject.name == "Door1")
         {
             isOpenable = true;

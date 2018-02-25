@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -88,6 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -111,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: efa6282fd30e2e643984fb2381432f13, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1001 &2704188
 Prefab:
   m_ObjectHideFlags: 0
@@ -174,6 +175,22 @@ Prefab:
     - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
       propertyPath: m_Name
       value: OniHouseGreen (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
@@ -284,7 +301,7 @@ GameObject:
   - component: {fileID: 76564251}
   - component: {fileID: 76564250}
   - component: {fileID: 76564249}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -535,6 +552,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  jumpPower: 100
+  grounded: 0
+  isOn: 0
 --- !u!114 &102556850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,6 +699,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -712,7 +736,6 @@ GameObject:
   - component: {fileID: 142400408}
   - component: {fileID: 142400407}
   - component: {fileID: 142400406}
-  - component: {fileID: 142400405}
   - component: {fileID: 142400404}
   m_Layer: 8
   m_Name: Izanami
@@ -728,7 +751,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 142400402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30, y: 1, z: 0}
+  m_LocalPosition: {x: 205, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -747,29 +770,8 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
---- !u!195 &142400405
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 142400402}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.00001
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 0
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 0
-  m_AutoBraking: 1
-  m_AutoRepath: 0
-  m_Height: 0.00001
-  m_BaseOffset: 1
-  m_WalkableMask: 9
-  m_ObstacleAvoidanceType: 4
 --- !u!23 &142400406
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -841,6 +843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  jumpSpeed: 100
 --- !u!136 &142400410
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1079,6 +1082,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -1347,7 +1354,7 @@ GameObject:
   - component: {fileID: 373033561}
   - component: {fileID: 373033560}
   - component: {fileID: 373033559}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Oni1 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1614,6 +1621,22 @@ Prefab:
       propertyPath: m_Name
       value: OniHouseGreen (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
   m_IsPrefabParent: 0
@@ -1703,6 +1726,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -1785,6 +1812,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -1821,7 +1852,7 @@ GameObject:
   - component: {fileID: 480440861}
   - component: {fileID: 480440860}
   - component: {fileID: 480440859}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1943,7 +1974,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 499360437}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2029,6 +2060,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -2175,7 +2210,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 589801698}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c6954bd69776d641a4f1ca935ef6233, type: 3}
   m_Name: 
@@ -2228,6 +2263,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -2239,7 +2275,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 589801698}
   m_LocalRotation: {x: -0, y: -0, z: 0.0000000018626449, w: 1}
-  m_LocalPosition: {x: -30, y: 5.65, z: -12.12}
+  m_LocalPosition: {x: 180, y: 5.65, z: -12.12}
   m_LocalScale: {x: 1, y: 1, z: 1.2828293}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2326,6 +2362,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -2416,6 +2456,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -2780,9 +2824,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 0
-  m_InflateMesh: 0
+  m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &721220404
@@ -2866,9 +2910,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 0
-  m_InflateMesh: 0
+  m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &741471179
@@ -2904,7 +2948,7 @@ GameObject:
   - component: {fileID: 767127409}
   - component: {fileID: 767127408}
   - component: {fileID: 767127407}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Oni1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3130,6 +3174,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -3212,6 +3260,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 30a929da9b9c8464e9334e2e08625a73, type: 2}
+    - target: {fileID: 100002, guid: e564e00a15e445848874f7d5f06e282e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e564e00a15e445848874f7d5f06e282e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e564e00a15e445848874f7d5f06e282e, type: 3}
   m_IsPrefabParent: 0
@@ -3300,6 +3356,22 @@ Prefab:
     - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
       propertyPath: m_Name
       value: OniHouseGreen (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
@@ -3461,7 +3533,7 @@ GameObject:
   - component: {fileID: 967847043}
   - component: {fileID: 967847042}
   - component: {fileID: 967847041}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Oni1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3627,6 +3699,22 @@ Prefab:
       propertyPath: m_Name
       value: OniHouseGreen (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
   m_IsPrefabParent: 0
@@ -3696,6 +3784,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fc5c1d5ae4e1eab4b8525c3a66ff4d57, type: 2}
+    - target: {fileID: 100000, guid: 7d89a6eb16f35ae4290ddbf016d43940, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 7d89a6eb16f35ae4290ddbf016d43940, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d89a6eb16f35ae4290ddbf016d43940, type: 3}
   m_IsPrefabParent: 0
@@ -3816,6 +3912,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -3898,6 +3998,22 @@ Prefab:
       propertyPath: m_Name
       value: OniHouseGreen (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
   m_IsPrefabParent: 0
@@ -3918,9 +4034,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 0
-  m_InflateMesh: 0
+  m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 0}
 --- !u!54 &1021989961
@@ -4008,6 +4124,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -4320,7 +4440,7 @@ GameObject:
   - component: {fileID: 1110799470}
   - component: {fileID: 1110799469}
   - component: {fileID: 1110799468}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Oni1 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4440,7 +4560,7 @@ GameObject:
   - component: {fileID: 1160529818}
   - component: {fileID: 1160529817}
   - component: {fileID: 1160529816}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4629,7 +4749,7 @@ GameObject:
   - component: {fileID: 1166785558}
   - component: {fileID: 1166785557}
   - component: {fileID: 1166785556}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4752,7 +4872,7 @@ GameObject:
   - component: {fileID: 1199593976}
   - component: {fileID: 1199593975}
   - component: {fileID: 1199593974}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Switch2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4879,7 +4999,7 @@ GameObject:
   - component: {fileID: 1214595800}
   - component: {fileID: 1214595799}
   - component: {fileID: 1214595798}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Oni1 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5041,6 +5161,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -5126,6 +5250,22 @@ Prefab:
     - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
       propertyPath: m_Name
       value: OniHouseGreen (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
@@ -5215,6 +5355,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -5373,6 +5517,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -5476,7 +5624,7 @@ GameObject:
   - component: {fileID: 1276806417}
   - component: {fileID: 1276806416}
   - component: {fileID: 1276806415}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Oni1 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5749,9 +5897,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 0
-  m_InflateMesh: 0
+  m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1298749282
@@ -5795,7 +5943,7 @@ GameObject:
   - component: {fileID: 1328084930}
   - component: {fileID: 1328084929}
   - component: {fileID: 1328084928}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Oni1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5915,7 +6063,7 @@ GameObject:
   - component: {fileID: 1347388476}
   - component: {fileID: 1347388475}
   - component: {fileID: 1347388474}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Oni1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6080,6 +6228,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -6261,7 +6413,7 @@ GameObject:
   - component: {fileID: 1390626930}
   - component: {fileID: 1390626929}
   - component: {fileID: 1390626928}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Switch1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6410,6 +6562,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 1283831473474728, guid: 0397c337a3bd5594bb4d32b56e1ae547, type: 2}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0397c337a3bd5594bb4d32b56e1ae547, type: 2}
   m_IsPrefabParent: 0
@@ -6534,6 +6690,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 30a929da9b9c8464e9334e2e08625a73, type: 2}
+    - target: {fileID: 100002, guid: e564e00a15e445848874f7d5f06e282e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e564e00a15e445848874f7d5f06e282e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e564e00a15e445848874f7d5f06e282e, type: 3}
   m_IsPrefabParent: 0
@@ -6622,6 +6786,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -6791,7 +6959,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4346074249988744, guid: 479006040a7047e41ae355540fd0239d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -24.67
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4346074249988744, guid: 479006040a7047e41ae355540fd0239d, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6803,7 +6971,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4346074249988744, guid: 479006040a7047e41ae355540fd0239d, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4346074249988744, guid: 479006040a7047e41ae355540fd0239d, type: 2}
       propertyPath: m_LocalRotation.y
@@ -6811,7 +6979,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4346074249988744, guid: 479006040a7047e41ae355540fd0239d, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4346074249988744, guid: 479006040a7047e41ae355540fd0239d, type: 2}
       propertyPath: m_LocalRotation.w
@@ -6836,11 +7004,23 @@ Prefab:
     - target: {fileID: 54447506269167124, guid: 479006040a7047e41ae355540fd0239d,
         type: 2}
       propertyPath: m_Constraints
-      value: 126
+      value: 124
       objectReference: {fileID: 0}
     - target: {fileID: 1887241501707032, guid: 479006040a7047e41ae355540fd0239d, type: 2}
       propertyPath: m_Name
       value: sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346074249988744, guid: 479006040a7047e41ae355540fd0239d, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346074249988744, guid: 479006040a7047e41ae355540fd0239d, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346074249988744, guid: 479006040a7047e41ae355540fd0239d, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 479006040a7047e41ae355540fd0239d, type: 2}
@@ -6850,27 +7030,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1623791176565128, guid: 479006040a7047e41ae355540fd0239d,
     type: 2}
   m_PrefabInternal: {fileID: 1604937271}
---- !u!195 &1604937273
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1604937272}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.00001
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 0
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 0
-  m_AutoBraking: 1
-  m_AutoRepath: 0
-  m_Height: 0.00001
-  m_BaseOffset: 1
-  m_WalkableMask: 9
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &1604937274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6883,11 +7042,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  jumpPower: 100
+  grounded: 0
+  isOn: 0
 --- !u!4 &1604937277 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4346074249988744, guid: 479006040a7047e41ae355540fd0239d,
     type: 2}
   m_PrefabInternal: {fileID: 1604937271}
+--- !u!136 &1604937279
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1604937272}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1606265872
 Prefab:
   m_ObjectHideFlags: 0
@@ -6947,6 +7122,22 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5154838bc4692764cbf4dc9ce53eef78, type: 2}
+    - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
   m_IsPrefabParent: 0
@@ -7020,6 +7211,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fc5c1d5ae4e1eab4b8525c3a66ff4d57, type: 2}
+    - target: {fileID: 100000, guid: 7d89a6eb16f35ae4290ddbf016d43940, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 7d89a6eb16f35ae4290ddbf016d43940, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d89a6eb16f35ae4290ddbf016d43940, type: 3}
   m_IsPrefabParent: 0
@@ -7179,6 +7378,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -7209,7 +7412,7 @@ GameObject:
   - component: {fileID: 1673845027}
   - component: {fileID: 1673845026}
   - component: {fileID: 1673845025}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7296,7 +7499,7 @@ GameObject:
   - component: {fileID: 1686128251}
   - component: {fileID: 1686128250}
   - component: {fileID: 1686128249}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7413,7 +7616,7 @@ GameObject:
   - component: {fileID: 1691786837}
   - component: {fileID: 1691786836}
   - component: {fileID: 1691786835}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7534,6 +7737,14 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f48232a96207d7c40ac83e9d6efcb1d8, type: 2}
+    - target: {fileID: 100000, guid: 4c7cce89cde5c904cad774441e67208b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 4c7cce89cde5c904cad774441e67208b, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c7cce89cde5c904cad774441e67208b, type: 3}
   m_IsPrefabParent: 0
@@ -7623,6 +7834,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -7650,7 +7865,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1728990981}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7833,6 +8048,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -7914,6 +8133,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -8087,7 +8310,7 @@ GameObject:
   - component: {fileID: 1849461919}
   - component: {fileID: 1849461918}
   - component: {fileID: 1849461917}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8271,7 +8494,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1854180869}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8358,6 +8581,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -8443,6 +8670,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -8533,6 +8764,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -8651,6 +8886,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -8732,6 +8971,22 @@ Prefab:
     - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
       propertyPath: m_Name
       value: OniHouseGreen (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1298aa138620f3749bd9e0564b68d484, type: 3}
@@ -8821,6 +9076,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
@@ -8986,6 +9245,10 @@ Prefab:
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
   m_IsPrefabParent: 0
@@ -9071,6 +9334,10 @@ Prefab:
     - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1cd27fef87fb9747bdc6eb6e8f0d568, type: 3}
