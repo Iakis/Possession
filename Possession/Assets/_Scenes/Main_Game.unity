@@ -2175,7 +2175,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 589801698}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c6954bd69776d641a4f1ca935ef6233, type: 3}
   m_Name: 
@@ -2251,17 +2251,17 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 589801698}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9978bb26f3cf2ea4f8de2bbb7112697e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targets:
-  - {fileID: 102556854}
+  - {fileID: 1604937277}
   - {fileID: 142400403}
-  offset: {x: 0, y: 2.7, z: -6.64}
+  offset: {x: 0, y: 3, z: -6.64}
   smoothTime: 0.1
-  minZoom: 200
+  minZoom: 120
   maxZoom: 60
   zoomLimiter: 50
 --- !u!1001 &592993298

@@ -15,7 +15,6 @@ public class Izanagi : MonoBehaviour {
     public bool follow;
     public bool shielded;
 
-
     bool CD;
     bool press;
 
@@ -49,15 +48,6 @@ public class Izanagi : MonoBehaviour {
             move();
         }
         attack();
-        
-        //Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        //pos.x = Mathf.Clamp01(pos.x);
-        //pos.y = Mathf.Clamp01(pos.y);
-        //transform.position = Camera.main.ViewportToWorldPoint(pos);
-
-       
-
-        
     }
 
     public void attack()
@@ -115,6 +105,12 @@ public class Izanagi : MonoBehaviour {
 
     void walk (float x)
     {
+		Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+		Debug.Log (pos.x);
+		pos.x = Mathf.Clamp01(pos.x) ;
+		pos.y = Mathf.Clamp01(pos.y);
+		transform.position = Camera.main.ViewportToWorldPoint(pos);
+
         if (x > 0)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.time * speed);
