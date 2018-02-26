@@ -31,7 +31,7 @@ public class SwitchScript : MonoBehaviour {
         RiverGenerator r = River.GetComponent<RiverGenerator>();
         rangeMin = River.transform.position.x - r.gridSize;
         rangeMax = River.transform.position.x + r.gridSize;
-        UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+        //UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
     }
 	
 	// Update is called once per frame
@@ -40,14 +40,14 @@ public class SwitchScript : MonoBehaviour {
         otherTriggered = otherSwitch.GetComponent<SwitchScript>().isTriggered;
 		if (isTriggered || otherTriggered)
         {
-            if (bridge.transform.position.y < 0)
+            if (bridge.transform.position.y < -0.5)
             {
                 bridge.transform.Translate(Vector3.up * Time.deltaTime);
             } else
             {
                 if (!isUp)
                 {
-                    UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+                    //UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
                     isUp = true;
                     isDown = false;
                 }
@@ -71,7 +71,7 @@ public class SwitchScript : MonoBehaviour {
             {
                 if (!isDown)
                 {
-                    UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
+                    //UnityEditor.AI.NavMeshBuilder.BuildNavMesh();
                     isDown = true;
                     isUp = false;
                 }
@@ -79,7 +79,7 @@ public class SwitchScript : MonoBehaviour {
         }
 	}
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         if (col.gameObject.name == "Izanami")
         {
