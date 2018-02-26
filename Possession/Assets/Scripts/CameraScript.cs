@@ -48,7 +48,7 @@ public class CameraScript : MonoBehaviour
         //}
         //else if (timer > sec)
         //{
-           transform.position = player.transform.position + offset;
+        transform.position = player.transform.position + offset;
         //}
     }
 }
