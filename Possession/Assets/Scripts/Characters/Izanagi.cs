@@ -88,6 +88,17 @@ public class Izanagi : MonoBehaviour
                 press = false;
             }
         }
+        //----------KEYBOARD-------------
+        if (Input.GetKey("down"))
+        {
+            if (!CD)
+            {
+                StartCoroutine("slice");
+                StartCoroutine("cooldown");
+            }
+        }
+        //----------KEYBOARD-------------
+
     }
 
     IEnumerator slice()
@@ -136,8 +147,31 @@ public class Izanagi : MonoBehaviour
     {
         if (!s_izanami.following)
         {
-            var x = Input.GetAxis("NagiX");
-            var y = Input.GetAxis("NagiY");
+            //var x = Input.GetAxis("NagiX");
+            //var y = Input.GetAxis("NagiY");
+            //----------KEYBOARD-------------
+            int x;
+            int y;
+            if (Input.GetKey("left"))
+            {
+                x = -1;
+            } else if (Input.GetKey("right"))
+            {
+                x = 1;
+            } else
+            {
+                x = 0;
+            }
+            if (Input.GetKey("up"))
+            {
+                y = -1;
+                jump(y);
+            }
+            else
+            {
+                y = 0;
+            }
+            //----------KEYBOARD-------------
             walk(x, y);
             jump(y);
 

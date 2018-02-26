@@ -54,7 +54,6 @@ public class Izanami : MonoBehaviour
     {
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        Debug.Log(pos.x);
         pos.x = Mathf.Clamp01(pos.x);
         pos.y = Mathf.Clamp01(pos.y);
         transform.position = Camera.main.ViewportToWorldPoint(pos);
@@ -85,8 +84,34 @@ public class Izanami : MonoBehaviour
         }
         else if (s_izanami.form == "ghost")
         {
-            var x = Input.GetAxis("NamiX");
-            var y = Input.GetAxis("NamiY");
+            //var x = Input.GetAxis("NamiX");
+            //var y = Input.GetAxis("NamiY");
+
+            //----------KEYBOARD-------------
+            int x;
+            int y;
+            if (Input.GetKey(KeyCode.A))
+            {
+                x = -1;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                x = 1;
+            }
+            else
+            {
+                x = 0;
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                y = -1;
+                jump(y);
+            }
+            else
+            {
+                y = 0;
+            }
+            //----------KEYBOARD-------------
             walk(x, y);
             jump(y);
 
