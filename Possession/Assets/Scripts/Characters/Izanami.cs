@@ -35,7 +35,7 @@ public class Izanami : MonoBehaviour
 
     }
     // Use this for initialization
-    void Start()
+    public virtual void Start()
     {
         m_izanagi = Izanagi.Get();
         form = "ghost";
@@ -69,7 +69,6 @@ public class Izanami : MonoBehaviour
             move();
         }
         attack();
-
     }
 
     void move()
@@ -173,9 +172,11 @@ public class Izanami : MonoBehaviour
         anim.SetBool("casting", true);
         Debug.Log("shielded");
         yield return new WaitForSeconds(0.5f);
-        anim.SetBool("casting", false);
+        
         m_izanagi.shielded = false;
         Debug.Log("un-shielded");
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("casting", false);
     }
 
     IEnumerator cooldown()
@@ -228,6 +229,10 @@ public class Izanami : MonoBehaviour
     {
         //anim.SetBool("idle", false);
         anim.SetBool("walking", true);
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        pos.x = Mathf.Clamp01(pos.x);
+        pos.y = Mathf.Clamp01(pos.y);
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
 
         if (x > 0)
         {
