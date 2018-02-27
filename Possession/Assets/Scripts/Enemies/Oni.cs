@@ -7,6 +7,7 @@ public class Oni : MonoBehaviour
 
     Renderer rend;
     private bool dead = false;
+    public ParticleSystem pSys;
 
     [Header("Oni Stats")]
     public int health = 25;
@@ -14,6 +15,7 @@ public class Oni : MonoBehaviour
     [Header("Oni Materials")]
     public Material AliveMaterial;
     public Material CorpseMaterial;
+    
 
     // Use this for initialization
     void Start()
@@ -21,6 +23,8 @@ public class Oni : MonoBehaviour
         rend = GetComponent<Renderer>();
         rend.enabled = true;
         rend.material = AliveMaterial;
+        pSys = transform.Find("FallingPaper").GetComponent<ParticleSystem>();
+        pSys.Stop();
     }
 
     // Update is called once per frame
@@ -35,7 +39,8 @@ public class Oni : MonoBehaviour
     void Damage(int amount)
     {
         health -= amount;
-
+        Debug.Log(string.Format("{0} have been damaged", this.gameObject.name));
+        StartCoroutine(PaperFall());
         if (health <= 0)
         {
             Die();
@@ -78,6 +83,13 @@ public class Oni : MonoBehaviour
         Destroy(this.gameObject);
         rend.material = CorpseMaterial;
         this.gameObject.layer = 10;
+    }
+
+    IEnumerator PaperFall()
+    {
+        pSys.Play();
+        yield return new WaitForSeconds(1);
+        pSys.Stop();
     }
 
 }

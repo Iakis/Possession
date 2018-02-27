@@ -1,7 +1,11 @@
 fileFormatVersion: 2
 guid: d55d80c4c49929546a20b2a386710247
 folderAsset: yes
+<<<<<<< HEAD:Possession/Assets/Animations/Oni/Materials.meta
 timeCreated: 1519628298
+=======
+timeCreated: 1519609614
+>>>>>>> 43255bff051e6d466235b41e443eed9aad2879ba:Possession/Assets/_Scenes/Main_Game.meta
 licenseType: Free
 DefaultImporter:
   userData: 
