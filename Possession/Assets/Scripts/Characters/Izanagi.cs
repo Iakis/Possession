@@ -56,10 +56,7 @@ public class Izanagi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        pos.x = Mathf.Clamp01(pos.x);
-        pos.y = Mathf.Clamp01(pos.y);
-        transform.position = Camera.main.ViewportToWorldPoint(pos);
+        
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         m_Rigidbody.AddForce(gravity, ForceMode.Acceleration);
         if (!CD)
@@ -147,33 +144,36 @@ public class Izanagi : MonoBehaviour
     {
         if (!s_izanami.following)
         {
-            //var x = Input.GetAxis("NagiX");
-            //var y = Input.GetAxis("NagiY");
-            //----------KEYBOARD-------------
-            int x;
-            int y;
-            if (Input.GetKey("left"))
-            {
-                x = -1;
-            } else if (Input.GetKey("right"))
-            {
-                x = 1;
-            } else
-            {
-                x = 0;
-            }
-            if (Input.GetKey("up"))
-            {
-                y = -1;
-                jump(y);
-            }
-            else
-            {
-                y = 0;
-            }
-            //----------KEYBOARD-------------
+            var x = Input.GetAxis("NagiX");
+            var y = Input.GetAxis("NagiY");
             walk(x, y);
             jump(y);
+            //----------KEYBOARD-------------
+            //int x;
+            //int y;
+            //if (Input.GetKey("left"))
+            //{
+            //    x = -1;
+            //} else if (Input.GetKey("right"))
+            //{
+            //    x = 1;
+            //} else
+            //{
+            //    x = 0;
+            //}
+            //if (Input.GetKey("up"))
+            //{
+            //    y = -1;
+            //    jump(y);
+            //}
+            //else
+            //{
+            //    y = 0;
+            //}
+            //walk(x, y);
+            //jump(y);
+            //----------KEYBOARD-------------
+
 
         }
         else if (s_izanami.form == "ghost")
@@ -212,6 +212,10 @@ public class Izanagi : MonoBehaviour
 
     void walk(float x, float y)
     {
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        pos.x = Mathf.Clamp01(pos.x);
+        pos.y = Mathf.Clamp01(pos.y);
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
         anim.SetBool("idle", false);
         anim.SetBool("isWalking", true);
 
