@@ -8,7 +8,7 @@ public class OniAI : MonoBehaviour
     ParticleSystem pSys;
 
 
-    public int health = 20;
+    public int health = 0;
 
     Animator anim;
     Vector3 end;
@@ -33,7 +33,7 @@ public class OniAI : MonoBehaviour
     {
         if (dead)
         {
-            m_rigidbody.isKinematic = true;
+            //m_rigidbody.isKinematic = true;
             fall();
             return;
         }
@@ -74,6 +74,7 @@ public class OniAI : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
+        Debug.Log("asddsfga");
         if (collision.gameObject.tag == "attack")
         {
             if (canhit)

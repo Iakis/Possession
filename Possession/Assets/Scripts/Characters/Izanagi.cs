@@ -102,10 +102,13 @@ public class Izanagi : MonoBehaviour
     {
         // suspend execution for 5 seconds
         anim.SetBool("isAttacking", true);
-        yield return new WaitForSeconds(0.1f);
-        m_blade.isAttacking = true;
+        anim.SetBool("idle", false);
         yield return new WaitForSeconds(0.2f);
+        m_blade.isAttacking = true;
+        
+        yield return new WaitForSeconds(0.3f);
         anim.SetBool("isAttacking", false);
+        anim.SetBool("idle", true);
         m_blade.isAttacking = false;
     }
 

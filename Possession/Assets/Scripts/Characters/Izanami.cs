@@ -22,7 +22,7 @@ public class Izanami : MonoBehaviour
     static Izanami s_izanami;
     Rigidbody m_Rigidbody;
 
-    static float globalGravity = -9.81f;
+    public static float globalGravity = -9.81f;
 
     public static Izanami Get()
     {
