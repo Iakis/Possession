@@ -25,20 +25,21 @@ public class IzaOni : Izanami {
     // Use this for initialization
     public override void Start () {
         base.Start();
+        this.gameObject.AddComponent<Rigidbody>();
         opress = false;
         oCD = false;
         //m_izanagi = Izanagi.Get();
         //form = "ghost";
         //following = false;
-        o_Rigidbody = GetComponent<Rigidbody>();
-        
+        //o_Rigidbody = GetComponent<Rigidbody>();
+        this.gameObject.layer = 0;
         oanim = GetComponent<Animator>();
         grounded = true;
         m_axe = Axe.Get();
         end = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
         reviving = true;
 
-        orot.eulerAngles = new Vector3(0f, 90f, 0f);
+        orot.eulerAngles = new Vector3(0f, 90f, 0f);    
         orot2.eulerAngles = new Vector3(0f, -90f, 0f);
         //if (this.transform.rotation == orot2)
         //{
@@ -103,6 +104,8 @@ public class IzaOni : Izanami {
             rise();
         } else
         {
+            //o_Rigidbody.constraints = RigidbodyConstraints.None;
+            //o_Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
             oanim.SetBool("revive", false);
             base.Update();
             unpossess();
@@ -128,6 +131,8 @@ public class IzaOni : Izanami {
         }
         else
         {
+            
+            o_Rigidbody = gameObject.GetComponent<Rigidbody>();
             transform.position = end;
             currentTime = 0f;
             reviving = false;
