@@ -15,6 +15,8 @@ public class Oni : MonoBehaviour
     [Header("Oni Materials")]
     public Material AliveMaterial;
     public Material CorpseMaterial;
+
+    
     
 
     // Use this for initialization
@@ -25,6 +27,8 @@ public class Oni : MonoBehaviour
         rend.material = AliveMaterial;
         pSys = transform.Find("FallingPaper").GetComponent<ParticleSystem>();
         pSys.Stop();
+
+        
     }
 
     // Update is called once per frame

@@ -12,8 +12,8 @@ public class Izanagi : MonoBehaviour
     static blade m_blade;
     Rigidbody m_Rigidbody;
     Animator anim;
-    Quaternion rot;
-    Quaternion rot2;
+    private Quaternion rot;
+    private Quaternion rot2;
 
     public bool follow;
     public bool shielded;
@@ -102,7 +102,7 @@ public class Izanagi : MonoBehaviour
     {
         // suspend execution for 5 seconds
         anim.SetBool("isAttacking", true);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         m_blade.isAttacking = true;
         yield return new WaitForSeconds(0.2f);
         anim.SetBool("isAttacking", false);
