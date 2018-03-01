@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class OniAI : MonoBehaviour
 {
@@ -16,21 +17,33 @@ public class OniAI : MonoBehaviour
     float timeToMove = 2f;
     Rigidbody m_rigidbody;
     bool canhit;
+    public Transform Izanami;
+    public Transform Izanagi;
+    public float range = 20f;
+    bool detected;
+    Vector3 target;
 
     // Use this for initialization
     void Start()
     {
+        Izanami = GameObject.Find("Izanami").transform;
+        Izanagi = GameObject.Find("Izanagi").transform;
         pSys = transform.Find("FallingPaper").GetComponent<ParticleSystem>();
         pSys.Stop();
         anim = this.gameObject.GetComponent<Animator>();
         m_rigidbody = this.gameObject.GetComponent<Rigidbody>();
         end = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
         canhit = true;
+        detected = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!detected)
+        {
+            StartCoroutine("DetectPlayer");
+        }
         if (dead)
         {
             m_rigidbody.isKinematic = true;
@@ -38,6 +51,40 @@ public class OniAI : MonoBehaviour
             return;
         }
 
+    }
+
+    IEnumerator DetectPlayer()
+    {
+        float dNami = Izanami.position.x - transform.position.x;
+        float dNagi = Izanagi.position.x - transform.position.x;
+        float dMin = Math.Min(Math.Abs(dNami), Math.Abs(dNagi));
+        if (dMin < range)
+        {
+            Vector3 offset;
+            if (Math.Abs(dNami) < Math.Abs(dNagi))
+            {
+                if (dNami > 0) offset = Vector3.left * 5;
+                else offset = Vector3.right * 5;
+                float step = 5f * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, Izanami.position+offset, step);
+                anim.SetBool("walking", true);
+                float time = (Math.Abs(dNami) - offset.x) / 5;
+                yield return new WaitForSeconds(time);
+                anim.SetBool("walking", false);
+            }
+            else
+            {
+                if (dNagi > 0) offset = Vector3.left * 5;
+                else offset = Vector3.right * 5;
+                float step = 5f * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, Izanagi.position+offset, step);
+                anim.SetBool("walking", true);
+                float time = (Math.Abs(dNagi) - offset.x) / 5;
+                yield return new WaitForSeconds(time);
+                anim.SetBool("walking", false);
+            }
+            detected = true;
+        }
     }
 
     IEnumerator die()

@@ -16,6 +16,8 @@ public class DoorScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Izanami = GameObject.Find("Izanami").transform;
+        Izanagi = GameObject.Find("Izanagi").transform;
         if (gameObject.name == "Door1")
         {
             isOpenable = true;

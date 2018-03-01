@@ -22,7 +22,9 @@ public class SwitchScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //Debug.Log("switch is not triggered");
-		rb = GetComponent<Rigidbody>();
+        Izanami = GameObject.Find("Izanami").transform;
+        Izanagi = GameObject.Find("Izanagi").transform;
+        rb = GetComponent<Rigidbody>();
         isTriggered = false;
         originPosition = bridge.transform.position;
         isUp = false;
