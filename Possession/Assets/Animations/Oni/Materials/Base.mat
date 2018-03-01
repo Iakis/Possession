@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Blade
+  m_Name: Base
   m_Shader: {fileID: 4800000, guid: 3125ebe52ff737242a0a16387e9aab47, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -65,16 +65,14 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineWidth: 9.98
+    - _OutlineWidth: 0.34
     - _Parallax: 0.02
-    - _RedrawRate: 6
-    - _Scribbliness: 0.01
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.8000001, g: 0.093603805, b: 0.06278808, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColour: {r: 0, g: 0, b: 0, a: 1}
