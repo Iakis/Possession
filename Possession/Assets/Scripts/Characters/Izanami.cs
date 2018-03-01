@@ -10,8 +10,8 @@ public class Izanami : MonoBehaviour
     public bool following;
     public float gravityScale = 1.0f;
     public float height;
-    Quaternion rot;
-    Quaternion rot2;
+    public Quaternion rot;
+    public Quaternion rot2;
 
     bool CD;
     bool press;
@@ -45,8 +45,9 @@ public class Izanami : MonoBehaviour
         anim = GetComponent<Animator>();
         m_Rigidbody = GetComponent<Rigidbody>();
         grounded = true;
-        rot = transform.rotation;
-        rot2 = Quaternion.Inverse(rot);
+        rot.eulerAngles = new Vector3(0, 90, 0);
+        rot2.eulerAngles = new Vector3(0, -90, 0);
+        //this.transform.rotation = rot;
     }
 
     // Update is called once per frame
@@ -71,13 +72,13 @@ public class Izanami : MonoBehaviour
         attack();
     }
 
-    void move()
+    public virtual void move()
     {
         if (following)
         {
             var x = Input.GetAxis("NamiX");
             var y = Input.GetAxis("NamiY");
-            walk(x, y);
+            walk(x, y, rot, rot2);
             jump(y);
 
         }
@@ -85,7 +86,7 @@ public class Izanami : MonoBehaviour
         {
             var x = Input.GetAxis("NamiX");
             var y = Input.GetAxis("NamiY");
-            walk(x, y);
+            walk(x, y, rot, rot2);
             jump(y);
             //----------KEYBOARD-------------
             //int x;
@@ -119,10 +120,12 @@ public class Izanami : MonoBehaviour
         }
     }
 
-    void jump(float y)
+    public void jump(float y)
     {
+        
         if (y < 0)
         {
+            Debug.Log("jump");
             anim.SetBool("idle", false);
             if (grounded)
             {
@@ -225,7 +228,7 @@ public class Izanami : MonoBehaviour
         }
     }
 
-    void walk(float x, float y)
+    public void walk(float x, float y, Quaternion rrot1, Quaternion rrot2)
     {
         //anim.SetBool("idle", false);
         anim.SetBool("walking", true);
@@ -236,28 +239,30 @@ public class Izanami : MonoBehaviour
 
         if (x > 0)
         {
-            if (transform.rotation == rot)
+            if (transform.rotation == rrot1)
             {
+                transform.rotation = rrot1;
                 m_Rigidbody.velocity = new Vector3(speed, m_Rigidbody.velocity.y, 0);
             }
             else
             {
                 //transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * turnspeed);
-                transform.rotation = rot;
+                transform.rotation = rrot1;
                 m_Rigidbody.velocity = new Vector3(speed, m_Rigidbody.velocity.y, 0);
             }
 
         }
         else if (x < 0)
         {
-            if (transform.rotation == rot2)
+            if (transform.rotation == rrot2)
             {
+                transform.rotation = rrot2;
                 m_Rigidbody.velocity = new Vector3(-speed, m_Rigidbody.velocity.y, 0);
             }
             else
             {
                 //transform.rotation = Quaternion.Lerp(transform.rotation, rot2, Time.deltaTime * turnspeed);
-                transform.rotation = rot2;
+                transform.rotation = rrot2;
                 m_Rigidbody.velocity = new Vector3(-speed, m_Rigidbody.velocity.y, 0);
             }
 

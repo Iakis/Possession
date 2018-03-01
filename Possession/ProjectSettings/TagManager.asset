@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Oni
+  - ground
+  - attack
   layers:
   - Default
   - TransparentFX

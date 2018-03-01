@@ -52,11 +52,13 @@ public class Possess : MonoBehaviour {
                 //m_door.player = host.transform;
                 //Debug.Log(m_door.player);
                 //host.GetComponent<Oni1Script>().dead = false;
-                cam.player = host;
-                host.AddComponent<Izanami>().enabled = true;
-                host.GetComponent<Oni1Script>().enabled = false;
-                host.GetComponent<Animator>().enabled = false;
-                host.transform.rotation = Quaternion.identity;
+                //cam.player = host;
+                host.AddComponent<IzaOni>().enabled = true;
+                //host.GetComponent<IzaOni>().Start();
+                host.GetComponent<OniAI>().enabled = false;
+                //host.transform.rotation = this.transform.rotation;
+                host.GetComponent<Animator>().SetBool("die", false);
+                host.GetComponent<Animator>().SetBool("revive", true);
                 Destroy(this.gameObject);
 
             }
