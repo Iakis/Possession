@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 038841a28318c2a45b1bb8d7f8d4b626
+timeCreated: 1519876938
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Qokijo
+  fontNames:
+  - Qokijo
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
