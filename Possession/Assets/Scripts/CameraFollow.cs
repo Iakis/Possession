@@ -10,9 +10,9 @@ public class CameraFollow : MonoBehaviour {
 	public Vector3 offset;
 	public float smoothTime = .5f;
 
-	public float minZoom = 120f;
+	public float minZoom = 80f;
 	public float maxZoom = 60f;
-	public float zoomLimiter = 50f;
+	public float zoomLimiter = 20f;
 
 	private Vector3 velocity;
 	private Camera cam;
