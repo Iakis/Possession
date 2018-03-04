@@ -80,6 +80,7 @@ Material:
     - _Glossiness: 0.303
     - _GlossyReflections: 1
     - _IntensityModifier: 0.086
+    - _InvFade: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -98,3 +99,4 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FillColour: {r: 0.395545, g: 0.395545, b: 0.86764705, a: 1}
     - _OutlineColour: {r: 0, g: 0, b: 0, a: 0.5}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

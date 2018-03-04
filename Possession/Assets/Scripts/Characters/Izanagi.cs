@@ -264,9 +264,13 @@ public class Izanagi : MonoBehaviour
         if (collide.gameObject.tag == "ground")
         {
             grounded = true;
-            anim.SetBool("inair", false);
-            anim.SetBool("jumping", false);
-            anim.SetBool("standjump", false);
+            if (anim)
+            {
+                anim.SetBool("inair", false);
+                anim.SetBool("jumping", false);
+                anim.SetBool("standjump", false);
+            }
+            
         }
     }
 }

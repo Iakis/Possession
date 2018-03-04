@@ -10,7 +10,7 @@ public class OniAI : MonoBehaviour
 
 
     public int health = 0;
-
+    Axe m_axe;
     Animator anim;
     Vector3 end;
     float currentTime = 0f;
@@ -35,6 +35,7 @@ public class OniAI : MonoBehaviour
         end = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
         canhit = true;
         detected = false;
+        m_axe = Axe.Get();
     }
 
     // Update is called once per frame
@@ -43,6 +44,19 @@ public class OniAI : MonoBehaviour
         if (!detected)
         {
             StartCoroutine("DetectPlayer");
+        } else
+        {
+            float dNami = Izanami.position.x - transform.position.x;
+            float dNagi = Izanagi.position.x - transform.position.x;
+            float dMin = Math.Min(Math.Abs(dNami), Math.Abs(dNagi));
+            if (dMin < 7)
+            {
+                StartCoroutine("smash");
+            } else
+            {
+                detected = false;
+                
+            }
         }
         if (dead)
         {
@@ -51,6 +65,16 @@ public class OniAI : MonoBehaviour
             return;
         }
 
+    }
+
+    IEnumerator smash()
+    {
+        anim.SetBool("smash", true);
+        yield return new WaitForSeconds(0.5f);
+        m_axe.isAttacking = true;
+        //yield return new WaitForSeconds(0.5f);
+        m_axe.isAttacking = false;
+        anim.SetBool("smash", false);
     }
 
     IEnumerator DetectPlayer()

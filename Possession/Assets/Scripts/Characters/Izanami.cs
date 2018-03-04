@@ -9,7 +9,7 @@ public class Izanami : MonoBehaviour
     public string form;
     public bool following;
     public float gravityScale = 1.0f;
-    public float height;
+    public float height = 16;
     public Quaternion rot;
     public Quaternion rot2;
 
@@ -48,6 +48,9 @@ public class Izanami : MonoBehaviour
         rot.eulerAngles = new Vector3(0, 90, 0);
         rot2.eulerAngles = new Vector3(0, -90, 0);
         //this.transform.rotation = rot;
+        height = 16;
+        speed = 10;
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 3.57f);
     }
 
     // Update is called once per frame
@@ -298,8 +301,12 @@ public class Izanami : MonoBehaviour
         if (collide.gameObject.tag == "ground")
         {
             grounded = true;
-            anim.SetBool("jumping", false);
-            anim.SetBool("standjump", false);
+            if (anim)
+            {
+                anim.SetBool("jumping", false);
+                anim.SetBool("standjump", false);
+            }
+            
         }
     }
 }
