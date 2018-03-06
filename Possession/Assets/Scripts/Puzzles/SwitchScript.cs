@@ -22,8 +22,14 @@ public class SwitchScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //Debug.Log("switch is not triggered");
-        Izanami = GameObject.Find("Izanami").transform;
-        Izanagi = GameObject.Find("Izanagi").transform;
+        if (Izanami == null)
+        {
+            Izanami = GameObject.FindGameObjectsWithTag("Izanami")[0].transform;
+        }
+        if (Izanagi == null)
+        {
+            Izanagi = GameObject.FindGameObjectsWithTag("Izanagi")[0].transform;
+        }
         rb = GetComponent<Rigidbody>();
         isTriggered = false;
         originPosition = bridge.transform.position;
@@ -38,11 +44,20 @@ public class SwitchScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		rb.WakeUp();
+        //Debug.Log(bridge.transform.position.y);
+        if (Izanami == null)
+        {
+            Izanami = GameObject.FindGameObjectsWithTag("Izanami")[0].transform;
+        }
+        if (Izanagi == null)
+        {
+            Izanagi = GameObject.FindGameObjectsWithTag("Izanagi")[0].transform;
+        }
+        rb.WakeUp();
         otherTriggered = otherSwitch.GetComponent<SwitchScript>().isTriggered;
 		if (isTriggered || otherTriggered)
         {
-            if (bridge.transform.position.y < -0.5)
+            if (bridge.transform.position.y < -2290.1)
             {
                 bridge.transform.Translate(Vector3.up * Time.deltaTime);
             } else
@@ -87,11 +102,13 @@ public class SwitchScript : MonoBehaviour {
         {
             Debug.Log(string.Format("being stepped by {0}", col.gameObject.name));
             isTriggered = true;
+            //transform.Translate(Vector3.down * 0.1f);
         }
         if (col.gameObject.name == "Izanagi")
         {
             Debug.Log(string.Format("being stepped by {0}", col.gameObject.name));
             isTriggered = true;
+            //transform.Translate(Vector3.down * 0.1f);
         }
     }
 
@@ -101,11 +118,13 @@ public class SwitchScript : MonoBehaviour {
         {
             Debug.Log(string.Format("{0} just left", col.gameObject.name));
             isTriggered = false;
+            //transform.Translate(Vector3.up * 0.01f);
         }
         if (col.gameObject.name == "Izanagi")
         {
             Debug.Log(string.Format("{0} just left", col.gameObject.name));
             isTriggered = false;
+            //transform.Translate(Vector3.up * 0.01f);
         }
     }
 }
