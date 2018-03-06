@@ -12,12 +12,20 @@ public class DoorScript : MonoBehaviour
     public bool isOpenable = false;
     public Transform Izanami;
     public Transform Izanagi;
+    public GameObject[] Izanamis;
+    public GameObject[] Izanagis;
 
     // Use this for initialization
     void Start()
     {
-        Izanami = GameObject.Find("Izanami").transform;
-        Izanagi = GameObject.Find("Izanagi").transform;
+        if (Izanami == null)
+        {
+            Izanami = GameObject.FindGameObjectsWithTag("Izanami")[0].transform;
+        }
+        if (Izanagi == null)
+        {
+            Izanagi = GameObject.FindGameObjectsWithTag("Izanagi")[0].transform;
+        }
         if (gameObject.name == "Door1")
         {
             isOpenable = true;
@@ -27,6 +35,14 @@ public class DoorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Izanami == null)
+        {
+            Izanami = GameObject.FindGameObjectsWithTag("Izanami")[0].transform;
+        }
+        if (Izanagi == null)
+        {
+            Izanagi = GameObject.FindGameObjectsWithTag("Izanagi")[0].transform;
+        }
         if (isOpenable)
         {
             isPlayerIn = (Izanami.transform.position.x - transform.position.x > 0 && Izanami.transform.position.x - transform.position.x < 5);
@@ -35,7 +51,7 @@ public class DoorScript : MonoBehaviour
                 if (!isLock && !isOpen && isPlayerIn)
                 {
                     Debug.Log("Opening the door when it's not locked and it's closed");
-                    transform.position += new Vector3(0f, 0f, 1.5f);
+                    transform.position += new Vector3(0f, 0f, 3f);
                     isOpen = true;
                 }
                 //if (isOpen)
