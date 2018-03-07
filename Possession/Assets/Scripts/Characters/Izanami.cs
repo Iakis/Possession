@@ -57,6 +57,7 @@ public class Izanami : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+        if (m_izanagi == null) m_izanagi = Izanagi.Get();
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
         pos.x = Mathf.Clamp01(pos.x);
