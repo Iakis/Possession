@@ -58,7 +58,7 @@ public class Izanagi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (s_izanami == null) s_izanami = Izanami.Get();
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         m_Rigidbody.AddForce(gravity, ForceMode.Acceleration);
         if (!CD)

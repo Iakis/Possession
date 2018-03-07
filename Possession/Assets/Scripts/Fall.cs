@@ -23,7 +23,7 @@ public class Fall : MonoBehaviour {
     {
         if (col.gameObject.tag == "Izanami")
         {
-            StartCoroutine(s_izanami.GetComponent<Izanagi>().Respawn());
+            StartCoroutine(s_izanami.GetComponent<Izanami>().Respawn());
         }
         if (col.gameObject.tag == "Izanagi")
         {
