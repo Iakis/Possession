@@ -10,15 +10,15 @@ public class OniAI : MonoBehaviour
 
 
     public int health = 0;
-    Axe m_axe;
+    Transform m_axe;
     Animator anim;
     Vector3 end;
     float currentTime = 0f;
     float timeToMove = 2f;
     Rigidbody m_rigidbody;
     bool canhit;
-    public Transform Izanami;
-    public Transform Izanagi;
+    static Izanagi s_izanagi;
+    static Izanami s_izanami;
     public float range = 20f;
     bool detected;
     Vector3 target;
@@ -26,8 +26,8 @@ public class OniAI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Izanami = GameObject.Find("Izanami").transform;
-        Izanagi = GameObject.Find("Izanagi").transform;
+        s_izanami = Izanami.Get();
+        s_izanagi = Izanagi.Get();
         pSys = transform.Find("FallingPaper").GetComponent<ParticleSystem>();
         pSys.Stop();
         anim = this.gameObject.GetComponent<Animator>();
@@ -35,52 +35,57 @@ public class OniAI : MonoBehaviour
         end = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
         canhit = true;
         detected = false;
-        m_axe = Axe.Get();
+        m_axe = transform.GetChild(2).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(0);
+        m_axe.GetComponent<BoxCollider>().enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!detected)
-        {
-            StartCoroutine("DetectPlayer");
-        } else
-        {
-            float dNami = Izanami.position.x - transform.position.x;
-            float dNagi = Izanagi.position.x - transform.position.x;
-            float dMin = Math.Min(Math.Abs(dNami), Math.Abs(dNagi));
-            if (dMin < 7)
-            {
-                StartCoroutine("smash");
-            } else
-            {
-                detected = false;
-                
-            }
-        }
+        if (s_izanami == null) s_izanami = Izanami.Get();
+        if (s_izanagi == null) s_izanagi = Izanagi.Get();
         if (dead)
         {
             //m_rigidbody.isKinematic = true;
             fall();
             return;
-        }
+        } else
+        {
+            if (!detected)
+            {
+                StartCoroutine("DetectPlayer");
+            }
+            else
+            {
+                float dNami = s_izanami.transform.position.x - transform.position.x;
+                float dNagi = s_izanagi.transform.position.x - transform.position.x;
+                float dMin = Math.Min(Math.Abs(dNami), Math.Abs(dNagi));
+                if (dMin < 7)
+                {
+                    StartCoroutine("smash");
+                }
+                else
+                {
+                    detected = false;
 
+                }
+            }
+        }
     }
 
     IEnumerator smash()
     {
+        m_axe.GetComponent<BoxCollider>().enabled = true;
         anim.SetBool("smash", true);
-        yield return new WaitForSeconds(0.5f);
-        m_axe.isAttacking = true;
-        //yield return new WaitForSeconds(0.5f);
-        m_axe.isAttacking = false;
+        yield return new WaitForSeconds(1f);
+        m_axe.GetComponent<BoxCollider>().enabled = false;
         anim.SetBool("smash", false);
     }
 
     IEnumerator DetectPlayer()
     {
-        float dNami = Izanami.position.x - transform.position.x;
-        float dNagi = Izanagi.position.x - transform.position.x;
+        float dNami = s_izanami.transform.position.x - transform.position.x;
+        float dNagi = s_izanagi.transform.position.x - transform.position.x;
         float dMin = Math.Min(Math.Abs(dNami), Math.Abs(dNagi));
         if (dMin < range)
         {
@@ -90,7 +95,7 @@ public class OniAI : MonoBehaviour
                 if (dNami > 0) offset = Vector3.left * 5;
                 else offset = Vector3.right * 5;
                 float step = 5f * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, Izanami.position+offset, step);
+                transform.position = Vector3.MoveTowards(transform.position, s_izanami.transform.position+offset, step);
                 anim.SetBool("walking", true);
                 float time = (Math.Abs(dNami) - offset.x) / 5;
                 yield return new WaitForSeconds(time);
@@ -101,7 +106,7 @@ public class OniAI : MonoBehaviour
                 if (dNagi > 0) offset = Vector3.left * 5;
                 else offset = Vector3.right * 5;
                 float step = 5f * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, Izanagi.position+offset, step);
+                transform.position = Vector3.MoveTowards(transform.position, s_izanagi.transform.position+offset, step);
                 anim.SetBool("walking", true);
                 float time = (Math.Abs(dNagi) - offset.x) / 5;
                 yield return new WaitForSeconds(time);
@@ -119,6 +124,7 @@ public class OniAI : MonoBehaviour
         anim.SetBool("die", true);
         yield return new WaitForSeconds(1f);
         dead = true;
+        m_axe.GetComponent<BoxCollider>().enabled = false;
     }
 
     IEnumerator hit()
@@ -145,7 +151,7 @@ public class OniAI : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("asddsfga");
+        //Debug.Log("asddsfga");
         if (collision.gameObject.tag == "attack")
         {
             if (canhit)

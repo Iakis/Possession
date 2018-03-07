@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Izanagi : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Izanagi : MonoBehaviour
     Animator anim;
     private Quaternion rot;
     private Quaternion rot2;
+    private GameObject[] respawns;
 
     public bool follow;
     public bool shielded;
@@ -260,7 +262,7 @@ public class Izanagi : MonoBehaviour
 
     void OnCollisionEnter(Collision collide)
     {
-        Debug.Log(collide.gameObject.tag);
+        //Debug.Log(collide.gameObject.tag);
         if (collide.gameObject.tag == "ground")
         {
             grounded = true;
@@ -271,6 +273,39 @@ public class Izanagi : MonoBehaviour
                 anim.SetBool("standjump", false);
             }
             
+        }
+    }
+
+    IEnumerator Die()
+    {
+        Debug.Log(string.Format("{0} is dead", gameObject.name));
+        yield return new WaitForSeconds(1f);
+        StartCoroutine("Respawn");
+        //animation for death
+    }
+
+    public IEnumerator Respawn()
+    {
+        Debug.Log(string.Format("{0} respawned", gameObject.name));
+        yield return new WaitForSeconds(1f);
+        respawns = GameObject.FindGameObjectsWithTag("Respawn");
+        foreach (GameObject respawn in respawns)
+        {
+            if (respawn.GetComponent<Respawn>().isActivated)
+            {
+                transform.position = respawn.transform.position;
+                s_izanami.transform.position = respawn.transform.position + Vector3.left*5f;
+            }
+        }
+        //animation for respawn
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.name == "Axe")
+        {
+            Debug.Log(string.Format("{0} gets hit", gameObject.name));
+            StartCoroutine("Die");
         }
     }
 }
