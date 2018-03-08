@@ -75,11 +75,10 @@ public class IzaOni : Izanami {
 
     IEnumerator smash()
     {
+        m_axe.GetComponent<BoxCollider>().enabled = true;
         oanim.SetBool("smash", true);
-        yield return new WaitForSeconds(0.5f);
-        m_axe.GetComponent<Axe>().isAttacking = true;
-        yield return new WaitForSeconds(0.5f);
-        m_axe.GetComponent<Axe>().isAttacking = false;
+        yield return new WaitForSeconds(1f);
+        m_axe.GetComponent<BoxCollider>().enabled = false;
         oanim.SetBool("smash", false);
     }
 
@@ -149,6 +148,7 @@ public class IzaOni : Izanami {
             GameObject go = (GameObject)Instantiate(AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Izanami.prefab", typeof(GameObject)), this.gameObject.transform.position, this.gameObject.transform.rotation);
             this.gameObject.GetComponent<IzaOni>().enabled = false;
             this.gameObject.GetComponent<OniAI>().enabled = true;
+            m_axe.GetComponent<BoxCollider>().enabled = false;
         }
     }
 
