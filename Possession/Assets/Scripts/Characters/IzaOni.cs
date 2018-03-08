@@ -8,7 +8,7 @@ public class IzaOni : Izanami {
     string test = "watwtwer";
     static IzaOni s_izaoni;
     static Izanagi m_izanagi;
-    static Axe m_axe;
+    GameObject m_axe;
 
     bool opress;
     bool oCD;
@@ -35,7 +35,7 @@ public class IzaOni : Izanami {
         this.gameObject.layer = 0;
         oanim = GetComponent<Animator>();
         grounded = true;
-        m_axe = Axe.Get();
+        m_axe = GameObject.Find("Axe");
         end = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
         reviving = true;
 
@@ -77,9 +77,9 @@ public class IzaOni : Izanami {
     {
         oanim.SetBool("smash", true);
         yield return new WaitForSeconds(0.5f);
-        m_axe.isAttacking = true;
+        m_axe.GetComponent<Axe>().isAttacking = true;
         yield return new WaitForSeconds(0.5f);
-        m_axe.isAttacking = false;
+        m_axe.GetComponent<Axe>().isAttacking = false;
         oanim.SetBool("smash", false);
     }
 

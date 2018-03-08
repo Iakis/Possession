@@ -4,19 +4,9 @@ using UnityEngine;
 
 public class Axe : MonoBehaviour
 {
-
-    public static Axe s_axe;
+    
     public bool isAttacking;
 
-    public static Axe Get()
-    {
-        return s_axe;
-    }
-
-    Axe()
-    {
-        s_axe = this;
-    }
     // Use this for initialization
     void Start()
     {
@@ -29,12 +19,12 @@ public class Axe : MonoBehaviour
         if (isAttacking)
         {
             this.gameObject.GetComponent<BoxCollider>().enabled = true;
-            //m_bladetrail.isAttacking = true;
+            //isAttacking = true;
         }
         else
         {
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
-            //m_bladetrail.isAttacking = false;
+            //isAttacking = false;
         }
     }
 }
