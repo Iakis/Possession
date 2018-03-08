@@ -23,6 +23,7 @@ public class OniAI : MonoBehaviour
     static Izanami s_izanami;
     public float range = 20f;
     bool detected;
+    bool CD;
     Vector3 target;
 
 
@@ -35,7 +36,7 @@ public class OniAI : MonoBehaviour
         pSys.Stop();
         anim = this.gameObject.GetComponent<Animator>();
         m_rigidbody = this.gameObject.GetComponent<Rigidbody>();
-        end = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+        CD = false;
         canhit = true;
         detected = false;
         m_axe = transform.GetChild(2).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(0);
@@ -76,8 +77,10 @@ public class OniAI : MonoBehaviour
                 float dNami = s_izanami.transform.position.x - transform.position.x;
                 float dNagi = s_izanagi.transform.position.x - transform.position.x;
                 float dMin = Math.Min(Math.Abs(dNami), Math.Abs(dNagi));
-                if (dMin < 7)
+                if (dMin < 7 && CD == false)
                 {
+                    StartCoroutine("Cooldown");
+                    anim.SetTrigger("attack");
                     StartCoroutine("smash");
                 }
                 else
@@ -89,13 +92,20 @@ public class OniAI : MonoBehaviour
         }
     }
 
+    IEnumerator Cooldown()
+    {
+        CD = true;
+        yield return new WaitForSeconds(6f);
+        CD = false;
+    }
+
     IEnumerator smash()
     {
+        yield return new WaitForSeconds(0.5f);
         m_axe.GetComponent<BoxCollider>().enabled = true;
-        anim.SetBool("smash", true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         m_axe.GetComponent<BoxCollider>().enabled = false;
-        anim.SetBool("smash", false);
+        
     }
 
     IEnumerator DetectPlayer()
@@ -134,10 +144,10 @@ public class OniAI : MonoBehaviour
 
     IEnumerator die()
     {
-        
+        end = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
         this.gameObject.layer = 10;
         this.GetComponent<CapsuleCollider>().isTrigger = true;
-        anim.SetBool("die", true);
+        anim.SetTrigger("die");
         yield return new WaitForSeconds(1f);
         dead = true;
         m_axe.GetComponent<BoxCollider>().enabled = false;
@@ -146,9 +156,8 @@ public class OniAI : MonoBehaviour
     IEnumerator hit()
     {
         canhit = false;
-        anim.SetBool("hit", true);
-        yield return new WaitForSeconds(0.5f);
-        anim.SetBool("hit", false);
+        anim.SetTrigger("hit");
+        yield return new WaitForSeconds(0.3f);
         canhit = true;
     }
 
@@ -174,20 +183,6 @@ public class OniAI : MonoBehaviour
             {
                 Damage(5);
             }
-            if (dead)
-            {
-                if (collision.gameObject.layer == 9)
-                {
-
-                    collision.gameObject.GetComponent<Oni1Script>().EnemyIsDead();
-                }
-            }
-        }
-        if (collision.gameObject.name == "sword")
-        {
-            
-            Damage(5);
-            gameObject.transform.Translate(0.25f, 0, 0);
             if (dead)
             {
                 if (collision.gameObject.layer == 9)

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 4f58bb5e7d3b42e4a9de2c87be600448
-timeCreated: 1519628299
+guid: 4f9e251d4f6fa824085f8daba940b6d7
+timeCreated: 1520501543
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -57,14 +57,14 @@ ModelImporter:
     400046: mixamorig:Spine1
     400048: mixamorig:Spine2
     400050: //RootNode
-    7400000: odie
+    7400000: revive
     9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -87,13 +87,13 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: odie
+      name: revive
       takeName: mixamo.com
-      firstFrame: 39
-      lastFrame: 191
+      firstFrame: 0
+      lastFrame: 455
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0
+      level: -1
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
@@ -110,59 +110,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: mixamorig:Hips
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:LeftUpLeg
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase/mixamorig:LeftToe_End
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:RightUpLeg
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase/mixamorig:RightToe_End
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm
-        weight: 1
-      - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand
-        weight: 1
+      transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
@@ -172,10 +120,10 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 0
+    importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -183,7 +131,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    indexFormat: 1
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -193,7 +141,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-    normalCalculationMode: 0
+    normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 1
   humanDescription:
@@ -212,7 +160,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0c67112c7d3db6449815decf17ce8dbc,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: d7d5c79ab863cc3428d2cab9d3497dc2,
     type: 3}
   animationType: 2
   humanoidOversampling: 1

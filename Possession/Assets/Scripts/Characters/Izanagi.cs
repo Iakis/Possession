@@ -28,6 +28,7 @@ public class Izanagi : MonoBehaviour
     bool idle;
     bool comb;
     int combo;
+    bool dead;
 
     static float globalGravity = -9.81f;
 
@@ -62,11 +63,14 @@ public class Izanagi : MonoBehaviour
         if (s_izanami == null) s_izanami = Izanami.Get();
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         m_Rigidbody.AddForce(gravity, ForceMode.Acceleration);
-        if (!CD)
+        if (!CD && !dead)
         {
             move();
         }
-        attack();
+        if (!dead)
+        {
+            attack();
+        }
     }
 
     public void attack()
@@ -243,16 +247,19 @@ public class Izanagi : MonoBehaviour
 
     IEnumerator Die()
     {
+        dead = true;
+        
         Debug.Log(string.Format("{0} is dead", gameObject.name));
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         StartCoroutine("Respawn");
         //animation for death
     }
 
     public IEnumerator Respawn()
     {
-        Debug.Log(string.Format("{0} respawned", gameObject.name));
         yield return new WaitForSeconds(1f);
+        dead = false;
+        anim.SetTrigger("revive");
         respawns = GameObject.FindGameObjectsWithTag("Respawn");
         foreach (GameObject respawn in respawns)
         {
@@ -270,6 +277,7 @@ public class Izanagi : MonoBehaviour
         if (col.gameObject.name == "Axe")
         {
             Debug.Log(string.Format("{0} gets hit", gameObject.name));
+            anim.SetTrigger("die");
             StartCoroutine("Die");
         }
     }
