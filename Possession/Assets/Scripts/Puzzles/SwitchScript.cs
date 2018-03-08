@@ -14,22 +14,16 @@ public class SwitchScript : MonoBehaviour {
     public bool isUp;
     public bool isDown;
     public Transform River;
-    public Transform Izanami;
-    public Transform Izanagi;
+    static Izanagi s_izanagi;
+    static Izanami s_izanami;
     private float rangeMin, rangeMax;
 	private Rigidbody rb;
 
     // Use this for initialization
     void Start () {
         //Debug.Log("switch is not triggered");
-        if (Izanami == null)
-        {
-            Izanami = GameObject.FindGameObjectsWithTag("Izanami")[0].transform;
-        }
-        if (Izanagi == null)
-        {
-            Izanagi = GameObject.FindGameObjectsWithTag("Izanagi")[0].transform;
-        }
+        s_izanami = Izanami.Get();
+        s_izanagi = Izanagi.Get();
         rb = GetComponent<Rigidbody>();
         isTriggered = false;
         originPosition = bridge.transform.position;
@@ -45,14 +39,8 @@ public class SwitchScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.Log(bridge.transform.position.y);
-        if (Izanami == null)
-        {
-            Izanami = GameObject.FindGameObjectsWithTag("Izanami")[0].transform;
-        }
-        if (Izanagi == null)
-        {
-            Izanagi = GameObject.FindGameObjectsWithTag("Izanagi")[0].transform;
-        }
+        if (s_izanami == null) s_izanami = Izanami.Get();
+        if (s_izanagi == null) s_izanagi = Izanagi.Get();
         rb.WakeUp();
         otherTriggered = otherSwitch.GetComponent<SwitchScript>().isTriggered;
 		if (isTriggered || otherTriggered)
@@ -72,13 +60,13 @@ public class SwitchScript : MonoBehaviour {
         }
         else
         {
-            if (rangeMin < Izanami.position.x  && Izanami.position.x < rangeMax)
+            if (rangeMin < s_izanami.transform.position.x  && s_izanami.transform.position.x < rangeMax)
             {
-                Izanami.transform.position += new Vector3(-(Izanami.position.x - rangeMin + 10), 0f, 0f);
+                StartCoroutine(s_izanami.GetComponent<Izanami>().Respawn());
             }
-            if (rangeMin < Izanagi.position.x && Izanagi.position.x < rangeMax)
+            if (rangeMin < s_izanagi.transform.position.x && s_izanagi.transform.position.x < rangeMax)
             {
-                Izanagi.transform.position += new Vector3(-(Izanagi.position.x - rangeMin + 10), 0f, 0f);
+                StartCoroutine(s_izanagi.GetComponent<Izanagi>().Respawn());
             }
             if (bridge.transform.position.y > originPosition.y)
             {
@@ -98,13 +86,7 @@ public class SwitchScript : MonoBehaviour {
 
     void OnTriggerStay(Collider col)
     {
-        if (col.gameObject.name == "Izanami")
-        {
-            Debug.Log(string.Format("being stepped by {0}", col.gameObject.name));
-            isTriggered = true;
-            //transform.Translate(Vector3.down * 0.1f);
-        }
-        if (col.gameObject.name == "Izanagi")
+        if (col.gameObject.tag == "Izanami" || col.gameObject.tag == "Izanagi")
         {
             Debug.Log(string.Format("being stepped by {0}", col.gameObject.name));
             isTriggered = true;
@@ -114,13 +96,7 @@ public class SwitchScript : MonoBehaviour {
 
     private void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.name == "Izanami")
-        {
-            Debug.Log(string.Format("{0} just left", col.gameObject.name));
-            isTriggered = false;
-            //transform.Translate(Vector3.up * 0.01f);
-        }
-        if (col.gameObject.name == "Izanagi")
+        if (col.gameObject.tag == "Izanami" || col.gameObject.tag == "Izanagi")
         {
             Debug.Log(string.Format("{0} just left", col.gameObject.name));
             isTriggered = false;

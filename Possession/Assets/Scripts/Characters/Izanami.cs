@@ -12,6 +12,7 @@ public class Izanami : MonoBehaviour
     public float height = 16;
     public Quaternion rot;
     public Quaternion rot2;
+    private GameObject[] respawns;
 
     bool CD;
     bool press;
@@ -56,6 +57,7 @@ public class Izanami : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+        if (m_izanagi == null) m_izanagi = Izanagi.Get();
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
         pos.x = Mathf.Clamp01(pos.x);
@@ -128,8 +130,8 @@ public class Izanami : MonoBehaviour
         
         if (y < 0)
         {
-            Debug.Log("jump");
-            anim.SetBool("idle", false);
+            //Debug.Log("jump");
+            //anim.SetBool("idle", false);
             if (grounded)
             {
                 m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, height, 0);
@@ -297,7 +299,7 @@ public class Izanami : MonoBehaviour
 
     void OnCollisionEnter(Collision collide)
     {
-        Debug.Log(collide.gameObject.tag);
+        //Debug.Log(collide.gameObject.tag);
         if (collide.gameObject.tag == "ground")
         {
             grounded = true;
@@ -307,6 +309,39 @@ public class Izanami : MonoBehaviour
                 anim.SetBool("standjump", false);
             }
             
+        }
+    }
+
+    IEnumerator Die()
+    {
+        Debug.Log(string.Format("{0} is dead", gameObject.name));
+        yield return new WaitForSeconds(1f);
+        StartCoroutine("Respawn");
+        //animation for death
+    }
+
+    public IEnumerator Respawn()
+    {
+        Debug.Log(string.Format("{0} respawned", gameObject.name));
+        yield return new WaitForSeconds(1f);
+        respawns = GameObject.FindGameObjectsWithTag("Respawn");
+        foreach (GameObject respawn in respawns)
+        {
+            if (respawn.GetComponent<Respawn>().isActivated)
+            {
+                m_izanagi.transform.position = respawn.transform.position;
+                transform.position = respawn.transform.position + Vector3.left*5f;
+            }
+        }
+        //animation for respawn
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "attack")
+        {
+            Debug.Log(string.Format("{0} gets hit", gameObject.name));
+            StartCoroutine("Die");
         }
     }
 }
