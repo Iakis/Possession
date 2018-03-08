@@ -7,6 +7,7 @@ public class blade : MonoBehaviour {
     public static blade s_blade;
     bladetrail m_bladetrail;
     public bool isAttacking;
+    public GameObject spark;
 
     public static blade Get()
     {
@@ -35,4 +36,20 @@ public class blade : MonoBehaviour {
             m_bladetrail.isAttacking = false;
         }
 	}
+
+    void OnTriggerEnter(Collider collision)
+    {
+        //Debug.Log("asddsfga");
+        if (collision.gameObject.tag == "Oni")
+        {
+            StartCoroutine("hit");
+        }
+    }
+
+    IEnumerator hit()
+    {
+        spark.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        spark.SetActive(false);
+    }
 }
