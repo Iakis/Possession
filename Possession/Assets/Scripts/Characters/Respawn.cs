@@ -19,7 +19,7 @@ public class Respawn : MonoBehaviour {
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Izanami" || col.gameObject.tag == "Izanagi")
+        if (col.gameObject.layer == 8 || col.gameObject.layer == 10)
         {
             isActivated = true;
             respawns = GameObject.FindGameObjectsWithTag("Respawn");

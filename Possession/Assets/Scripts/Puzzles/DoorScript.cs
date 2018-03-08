@@ -10,10 +10,8 @@ public class DoorScript : MonoBehaviour
     public bool isOpen = false;
     public bool isPlayerIn = false;
     public bool isOpenable = false;
-    static Izanagi s_izanagi;
-    static Izanami s_izanami;
-    public GameObject[] Izanamis;
-    public GameObject[] Izanagis;
+    public static Izanagi s_izanagi;
+    public static Izanami s_izanami;
 
     // Use this for initialization
     void Start()
@@ -29,7 +27,10 @@ public class DoorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (s_izanami == null) s_izanami = Izanami.Get();
+        if (s_izanami == null || s_izanami.gameObject.layer != 8)
+        {
+            s_izanami = Izanami.Get();
+        }
         if (s_izanagi == null) s_izanagi = Izanagi.Get();
         if (isOpenable)
         {
@@ -75,11 +76,11 @@ public class DoorScript : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        if (col.gameObject.tag == "Izanami")
+        if (col.gameObject.layer == 8)
         {
             s_izanami.transform.position += Vector3.right;
         }
-        if (col.gameObject.tag == "Izanagi")
+        if (col.gameObject.layer == 10)
         {
             s_izanagi.transform.position += Vector3.left;
         }
