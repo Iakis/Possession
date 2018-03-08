@@ -23026,8 +23026,6 @@ MonoBehaviour:
   isOpen: 0
   isPlayerIn: 0
   isOpenable: 0
-  Izanamis: []
-  Izanagis: []
 --- !u!54 &1068463406
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24622,8 +24620,6 @@ MonoBehaviour:
   isOpen: 0
   isPlayerIn: 0
   isOpenable: 0
-  Izanamis: []
-  Izanagis: []
 --- !u!54 &1138702729
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29139,8 +29135,6 @@ MonoBehaviour:
   isOpen: 0
   isPlayerIn: 0
   isOpenable: 0
-  Izanamis: []
-  Izanagis: []
 --- !u!54 &1402058543
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34513,8 +34507,6 @@ MonoBehaviour:
   isOpen: 0
   isPlayerIn: 0
   isOpenable: 0
-  Izanamis: []
-  Izanagis: []
 --- !u!54 &1505718872
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35168,8 +35160,6 @@ MonoBehaviour:
   isOpen: 0
   isPlayerIn: 0
   isOpenable: 0
-  Izanamis: []
-  Izanagis: []
 --- !u!54 &1546181201
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -35361,8 +35351,6 @@ MonoBehaviour:
   isOpen: 0
   isPlayerIn: 0
   isOpenable: 0
-  Izanamis: []
-  Izanagis: []
 --- !u!54 &1562467465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -41964,6 +41952,11 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 137044521194351918, guid: cef401c15e4cadc468c0593a2eb9882b,
+        type: 2}
+      propertyPath: m_DynamicOccludee
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cef401c15e4cadc468c0593a2eb9882b, type: 2}
