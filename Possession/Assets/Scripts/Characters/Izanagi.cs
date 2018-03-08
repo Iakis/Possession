@@ -25,6 +25,8 @@ public class Izanagi : MonoBehaviour
     bool isjumping;
     bool grounded;
     bool idle;
+    bool comb;
+    int combo;
 
     static float globalGravity = -9.81f;
 
@@ -76,48 +78,53 @@ public class Izanagi : MonoBehaviour
         {
             if (press == true)
             {
-
-                if (!CD)
+                if (!CD && combo == 0)
                 {
-                    StartCoroutine("slice");
                     StartCoroutine("cooldown");
+                    anim.SetTrigger("attacking");
+                    combo = 1;
+                } else if (comb && combo == 1)
+                {
+                    StopCoroutine("cooldown");
+                    StartCoroutine("cooldown");
+                    anim.SetTrigger("attacking2");
+                    combo = 2;
+                } else if (comb && combo == 2)
+                {
+                    StopCoroutine("cooldown");
+                    StartCoroutine("cooldown");
+                    anim.SetTrigger("attacking3");
+                    combo = 3;
                 }
                 press = false;
             }
         }
-        //----------KEYBOARD-------------
-        if (Input.GetKey("down"))
-        {
-            if (!CD)
-            {
-                StartCoroutine("slice");
-                StartCoroutine("cooldown");
-            }
-        }
-        //----------KEYBOARD-------------
-
-    }
-
-    IEnumerator slice()
-    {
-        // suspend execution for 5 seconds
-        anim.SetBool("isAttacking", true);
-        anim.SetBool("idle", false);
-        yield return new WaitForSeconds(0.2f);
-        m_blade.isAttacking = true;
-        
-        yield return new WaitForSeconds(0.3f);
-        anim.SetBool("isAttacking", false);
-        anim.SetBool("idle", true);
-        m_blade.isAttacking = false;
     }
 
     IEnumerator cooldown()
     {
-        // suspend execution for 5 seconds
         CD = true;
-        yield return new WaitForSeconds(0.75f);
+        comb = false;
+        anim.SetBool("idle", false);
+        m_blade.isAttacking = true;
+        yield return new WaitForSeconds(0.25f);
+        comb = true;
+        if (combo == 1)
+        {
+            yield return new WaitForSeconds(0.3f);
+        } else if (combo == 2)
+        {
+            yield return new WaitForSeconds(0.55f);
+        } else if (combo == 3)
+        {
+            yield return new WaitForSeconds(0.85f);
+        }
+        anim.SetBool("idle", true);
+        combo = 0;
         CD = false;
+        m_blade.isAttacking = false;
+        
+        comb = false;
     }
 
     //IEnumerator turn()
@@ -151,33 +158,6 @@ public class Izanagi : MonoBehaviour
             var y = Input.GetAxis("NagiY");
             walk(x, y);
             jump(y);
-            //----------KEYBOARD-------------
-            //int x;
-            //int y;
-            //if (Input.GetKey("left"))
-            //{
-            //    x = -1;
-            //} else if (Input.GetKey("right"))
-            //{
-            //    x = 1;
-            //} else
-            //{
-            //    x = 0;
-            //}
-            //if (Input.GetKey("up"))
-            //{
-            //    y = -1;
-            //    jump(y);
-            //}
-            //else
-            //{
-            //    y = 0;
-            //}
-            //walk(x, y);
-            //jump(y);
-            //----------KEYBOARD-------------
-
-
         }
         else if (s_izanami.form == "ghost")
         {
@@ -197,17 +177,10 @@ public class Izanagi : MonoBehaviour
             {
                 m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, height, 0);
                 grounded = false;
-                if (m_Rigidbody.velocity.x == 0)
-                {
-                    anim.SetBool("standjump", true);
-                } else
-                {
-                    anim.SetBool("jumping", true);
-                }
+                anim.SetTrigger("jump");
             }
             else
             {
-                //anim.SetBool("inair", true);
                 m_Rigidbody.velocity = m_Rigidbody.velocity;
             }
         }
@@ -222,7 +195,7 @@ public class Izanagi : MonoBehaviour
         anim.SetBool("idle", false);
         anim.SetBool("isWalking", true);
 
-        if (x > 0)
+        if (x > 0 && CD == false)
         {
             if (transform.rotation == rot)
             {
@@ -235,7 +208,7 @@ public class Izanagi : MonoBehaviour
             }
             
         }
-        else if (x < 0)
+        else if (x < 0 && CD == false)
         {
             if (transform.rotation == rot2)
             {
@@ -263,14 +236,7 @@ public class Izanagi : MonoBehaviour
         Debug.Log(collide.gameObject.tag);
         if (collide.gameObject.tag == "ground")
         {
-            grounded = true;
-            if (anim)
-            {
-                anim.SetBool("inair", false);
-                anim.SetBool("jumping", false);
-                anim.SetBool("standjump", false);
-            }
-            
+            grounded = true;            
         }
     }
 }
