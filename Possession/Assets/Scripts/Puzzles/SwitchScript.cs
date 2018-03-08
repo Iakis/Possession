@@ -14,8 +14,13 @@ public class SwitchScript : MonoBehaviour {
     public bool isUp;
     public bool isDown;
     public Transform River;
+<<<<<<< HEAD
     static Izanagi s_izanagi;
     static Izanami s_izanami;
+=======
+    public static Izanagi s_izanagi;
+    public static Izanami s_izanami;
+>>>>>>> be941b0c9a02392ec1c7a696e60488f54c64dfc4
     private float rangeMin, rangeMax;
 	private Rigidbody rb;
 
@@ -39,7 +44,14 @@ public class SwitchScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.Log(bridge.transform.position.y);
+<<<<<<< HEAD
         if (s_izanami == null) s_izanami = Izanami.Get();
+=======
+        if (s_izanami == null || s_izanami.gameObject.layer != 8)
+        {
+            s_izanami = Izanami.Get();
+        }
+>>>>>>> be941b0c9a02392ec1c7a696e60488f54c64dfc4
         if (s_izanagi == null) s_izanagi = Izanagi.Get();
         rb.WakeUp();
         otherTriggered = otherSwitch.GetComponent<SwitchScript>().isTriggered;
@@ -86,7 +98,11 @@ public class SwitchScript : MonoBehaviour {
 
     void OnTriggerStay(Collider col)
     {
+<<<<<<< HEAD
         if (col.gameObject.tag == "Izanami" || col.gameObject.tag == "Izanagi")
+=======
+        if (col.gameObject.layer == 8 || col.gameObject.layer == 10)
+>>>>>>> be941b0c9a02392ec1c7a696e60488f54c64dfc4
         {
             Debug.Log(string.Format("being stepped by {0}", col.gameObject.name));
             isTriggered = true;
@@ -96,7 +112,11 @@ public class SwitchScript : MonoBehaviour {
 
     private void OnTriggerExit(Collider col)
     {
+<<<<<<< HEAD
         if (col.gameObject.tag == "Izanami" || col.gameObject.tag == "Izanagi")
+=======
+        if (col.gameObject.layer == 8 || col.gameObject.layer == 10)
+>>>>>>> be941b0c9a02392ec1c7a696e60488f54c64dfc4
         {
             Debug.Log(string.Format("{0} just left", col.gameObject.name));
             isTriggered = false;

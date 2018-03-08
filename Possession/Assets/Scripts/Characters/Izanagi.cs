@@ -1,8 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
 using UnityEngine.Networking;
 
+=======
+using UnityEngine.Networking;
+
+>>>>>>> be941b0c9a02392ec1c7a696e60488f54c64dfc4
 public class Izanagi : MonoBehaviour
 {
 
@@ -59,7 +64,11 @@ public class Izanagi : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+<<<<<<< HEAD
     {
+=======
+    {
+>>>>>>> be941b0c9a02392ec1c7a696e60488f54c64dfc4
         if (s_izanami == null) s_izanami = Izanami.Get();
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         m_Rigidbody.AddForce(gravity, ForceMode.Acceleration);
@@ -239,6 +248,39 @@ public class Izanagi : MonoBehaviour
         if (collide.gameObject.tag == "ground")
         {
             grounded = true;            
+        }
+    }
+
+    IEnumerator Die()
+    {
+        Debug.Log(string.Format("{0} is dead", gameObject.name));
+        yield return new WaitForSeconds(1f);
+        StartCoroutine("Respawn");
+        //animation for death
+    }
+
+    public IEnumerator Respawn()
+    {
+        Debug.Log(string.Format("{0} respawned", gameObject.name));
+        yield return new WaitForSeconds(1f);
+        respawns = GameObject.FindGameObjectsWithTag("Respawn");
+        foreach (GameObject respawn in respawns)
+        {
+            if (respawn.GetComponent<Respawn>().isActivated)
+            {
+                transform.position = respawn.transform.position;
+                s_izanami.transform.position = respawn.transform.position + Vector3.left*5f;
+            }
+        }
+        //animation for respawn
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.name == "Axe")
+        {
+            Debug.Log(string.Format("{0} gets hit", gameObject.name));
+            StartCoroutine("Die");
         }
     }
 

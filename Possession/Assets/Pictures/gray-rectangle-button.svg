@@ -1,0 +1,18 @@
+<?xml version="1.0"?><svg width="500" height="270" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>black rectangle button</title>
+ <defs>
+  <linearGradient id="linearGradient18943-8">
+   <stop stop-color="#ffffff" id="stop18945-8" offset="0"/>
+   <stop stop-color="#ffffff" stop-opacity="0" id="stop18947-2" offset="1"/>
+  </linearGradient>
+  <linearGradient xlink:href="#linearGradient18943-8" id="linearGradient3534" x1="-0.058473" y1="-0.286161" x2="0.500204" y2="0.500194"/>
+ </defs>
+ <metadata id="metadata3394">image/svg+xml</metadata>
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" fill="#000000" ry="37.181026" y="12.21308" x="4.033966" height="248.573859" width="493.932019"/>
+  <g display="inline" id="layer1"/>
+  <rect fill="#bfbfbf" ry="37.181026" y="18.713059" x="11.033966" height="232.57388" width="477.932065" id="rect17756"/>
+  <path fill="url(#linearGradient3534)" id="rect17756-0" d="m115.072998,20.014601l293.368011,-1c32.957977,0.736698 72.061005,-0.0249 47.252991,7.9751c-24.80899,8 -374.774002,151.958298 -411.765301,213.574295c0,0 -32.3796,-17.520996 -32.3796,-29.96199l0,-155.130604c2.534301,-13.598602 5.022599,-21.850502 13.073701,-26.758902c8.0511,-4.9084 8.664999,-9.473299 36.450502,-8.697899l66.499695,0l-12.5,0l0,0l0,0l0,0z"/>
+ </g>
+</svg>

@@ -7,7 +7,9 @@ public class OniAI : MonoBehaviour
 {
     private bool dead = false;
     ParticleSystem pSys;
-
+    private Shader originShader;
+    public Shader myShader;
+    private Renderer rend;
 
     public int health = 0;
     Transform m_axe;
@@ -23,6 +25,7 @@ public class OniAI : MonoBehaviour
     bool detected;
     Vector3 target;
 
+
     // Use this for initialization
     void Start()
     {
@@ -37,17 +40,37 @@ public class OniAI : MonoBehaviour
         detected = false;
         m_axe = transform.GetChild(2).GetChild(2).GetChild(0).GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetChild(0);
         m_axe.GetComponent<BoxCollider>().enabled = false;
+<<<<<<< HEAD
+=======
+        originShader = Shader.Find("Hand-Drawn/Fill+Outline/Simple Outline + Bumped Diffuse Fill");
+        rend = transform.GetChild(0).GetComponent<Renderer>();
+        myShader = Shader.Find("Outlined/Silhouetted Diffuse");
+>>>>>>> be941b0c9a02392ec1c7a696e60488f54c64dfc4
     }
 
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         if (s_izanami == null) s_izanami = Izanami.Get();
+=======
+        if (s_izanami == null || s_izanami.gameObject.layer != 8)
+        {
+            s_izanami = Izanami.Get();
+        }
+>>>>>>> be941b0c9a02392ec1c7a696e60488f54c64dfc4
         if (s_izanagi == null) s_izanagi = Izanagi.Get();
         if (dead)
         {
             //m_rigidbody.isKinematic = true;
             fall();
+            if (Math.Abs(s_izanami.transform.position.x - transform.position.x) < 5f)
+            {
+                rend.material.shader = myShader;
+            } else
+            {
+                rend.material.shader = originShader;
+            }
             return;
         } else
         {
