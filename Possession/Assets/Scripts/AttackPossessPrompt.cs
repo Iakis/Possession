@@ -3,22 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PromptAppear : MonoBehaviour {
+public class AttackPossessPrompt : MonoBehaviour {
 
 	[SerializeField] private Image currentPrompt;
-	public Sprite prompt;
+	public Sprite attackPrompt;
+	public Sprite possessPrompt;
+	public GameObject Oni;
+	private OniAI oniScript;
 
 	void Start(){
 		currentPrompt.enabled = false;
+		oniScript = Oni.GetComponent<OniAI> ();
 	}
 
 	// Use this for initialization
 	void OnTriggerEnter(Collider other){
 		if (other.CompareTag ("Player")) {
+			// Check Oni health is 0
 			Debug.Log("Enter prompt");
-			currentPrompt.sprite = prompt;
+			if(oniScript.health > 0){
+				currentPrompt.sprite = attackPrompt;
+			}
+			else{
+				currentPrompt.sprite = possessPrompt;
+			}
 			currentPrompt.enabled = true;
-
 		}
 	}
 
@@ -30,6 +39,6 @@ public class PromptAppear : MonoBehaviour {
 	}
 
 	void Update() {
-	
 	}
+		
 }

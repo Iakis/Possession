@@ -26,6 +26,8 @@ public class OniAI : MonoBehaviour
     bool CD;
     Vector3 target;
 
+	Component halo;
+
 
     // Use this for initialization
     void Start()
@@ -44,6 +46,7 @@ public class OniAI : MonoBehaviour
         originShader = Shader.Find("Hand-Drawn/Fill+Outline/Simple Outline + Bumped Diffuse Fill");
         rend = transform.GetChild(0).GetComponent<Renderer>();
         myShader = Shader.Find("Outlined/Silhouetted Diffuse");
+		halo = GetComponent ("Halo");
     }
 
     // Update is called once per frame
@@ -65,6 +68,7 @@ public class OniAI : MonoBehaviour
             {
                 rend.material.shader = originShader;
             }
+			halo.GetType ().GetProperty ("enabled").SetValue (halo, true, null);
             return;
         } else
         {
@@ -89,6 +93,7 @@ public class OniAI : MonoBehaviour
 
                 }
             }
+			halo.GetType ().GetProperty ("enabled").SetValue (halo, false, null);
         }
     }
 
