@@ -59,10 +59,10 @@ public class Izanami : MonoBehaviour
     {
         if (m_izanagi == null) m_izanagi = Izanagi.Get();
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
-        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        pos.x = Mathf.Clamp01(pos.x);
-        pos.y = Mathf.Clamp01(pos.y);
-        transform.position = Camera.main.ViewportToWorldPoint(pos);
+        // Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        // pos.x = Mathf.Clamp01(pos.x);
+        // pos.y = Mathf.Clamp01(pos.y);
+        // transform.position = Camera.main.ViewportToWorldPoint(pos);
         m_Rigidbody.AddForce(gravity, ForceMode.Acceleration);
 
         follow();
@@ -237,10 +237,10 @@ public class Izanami : MonoBehaviour
     {
         //anim.SetBool("idle", false);
         anim.SetBool("walking", true);
-        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        pos.x = Mathf.Clamp01(pos.x);
-        pos.y = Mathf.Clamp01(pos.y);
-        transform.position = Camera.main.ViewportToWorldPoint(pos);
+        // Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        // pos.x = Mathf.Clamp01(pos.x);
+        // pos.y = Mathf.Clamp01(pos.y);
+        // transform.position = Camera.main.ViewportToWorldPoint(pos);
 
         if (x > 0)
         {

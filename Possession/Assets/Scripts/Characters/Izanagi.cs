@@ -193,10 +193,10 @@ public class Izanagi : MonoBehaviour
 
     void walk(float x, float y)
     {
-        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        pos.x = Mathf.Clamp01(pos.x);
-        pos.y = Mathf.Clamp01(pos.y);
-        transform.position = Camera.main.ViewportToWorldPoint(pos);
+        // Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        // pos.x = Mathf.Clamp01(pos.x);
+        // pos.y = Mathf.Clamp01(pos.y);
+        // transform.position = Camera.main.ViewportToWorldPoint(pos);
         anim.SetBool("idle", false);
         anim.SetBool("isWalking", true);
 
