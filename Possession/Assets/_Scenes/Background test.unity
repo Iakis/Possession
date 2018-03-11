@@ -1272,6 +1272,22 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5776a545849c9e445b4d7370929b2a42, type: 3}
   m_PrefabInternal: {fileID: 86021396}
+--- !u!1 &86599098 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1777987960202782, guid: 3ff7f9ca2ee16a943a09e7b7b423262f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1563048950}
+--- !u!122 &86599099
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 86599098}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4292828268
+  m_Size: 8.69
 --- !u!1001 &89358122
 Prefab:
   m_ObjectHideFlags: 0
@@ -2427,6 +2443,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5776a545849c9e445b4d7370929b2a42, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &176613847 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1777987960202782, guid: 3ff7f9ca2ee16a943a09e7b7b423262f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1153031495}
+--- !u!122 &176613848
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 176613847}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4292828268
+  m_Size: 8.69
 --- !u!1 &177812426
 GameObject:
   m_ObjectHideFlags: 0
@@ -13354,6 +13386,17 @@ GameObject:
   m_PrefabParentObject: {fileID: 1777987960202782, guid: 3ff7f9ca2ee16a943a09e7b7b423262f,
     type: 2}
   m_PrefabInternal: {fileID: 1895135809}
+--- !u!122 &582280183
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 582280182}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4292828268
+  m_Size: 8.69
 --- !u!1001 &583507186
 Prefab:
   m_ObjectHideFlags: 0
@@ -37868,6 +37911,22 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5776a545849c9e445b4d7370929b2a42, type: 3}
   m_PrefabInternal: {fileID: 466865615}
+--- !u!1 &1291321005 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1777987960202782, guid: 3ff7f9ca2ee16a943a09e7b7b423262f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1033137553}
+--- !u!122 &1291321006
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1291321005}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4292828268
+  m_Size: 8.69
 --- !u!1 &1291377536
 GameObject:
   m_ObjectHideFlags: 0
