@@ -21,6 +21,10 @@ public class Izanagi : MonoBehaviour
     public float height;
     public float turnspeed;
 
+    AudioSource swordSound;
+    AudioSource jumpSound;
+    AudioSource walkSound;
+
     bool CD;
     bool press;
     bool isjumping;
@@ -55,11 +59,15 @@ public class Izanagi : MonoBehaviour
         press = false;
         shielded = false;
         grounded = true;
+        swordSound = GameObject.Find("SwordSound").GetComponent<AudioSource>();
+        jumpSound = GameObject.Find("JumpSound").GetComponent<AudioSource>();
+        walkSound = GameObject.Find("WalkSound").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        walkSound.mute = !(anim.GetBool("isWalking"));
         if (s_izanami == null) s_izanami = Izanami.Get();
         Vector3 gravity = globalGravity * gravityScale * Vector3.up;
         m_Rigidbody.AddForce(gravity, ForceMode.Acceleration);
@@ -87,23 +95,32 @@ public class Izanagi : MonoBehaviour
                 {
                     StartCoroutine("cooldown");
                     anim.SetTrigger("attacking");
+                    StartCoroutine("playSword");
                     combo = 1;
                 } else if (comb && combo == 1)
                 {
                     StopCoroutine("cooldown");
                     StartCoroutine("cooldown");
                     anim.SetTrigger("attacking2");
+                    StartCoroutine("playSword");
                     combo = 2;
                 } else if (comb && combo == 2)
                 {
                     StopCoroutine("cooldown");
                     StartCoroutine("cooldown");
                     anim.SetTrigger("attacking3");
+                    StartCoroutine("playSword");
                     combo = 3;
                 }
                 press = false;
             }
         }
+    }
+
+    IEnumerator playSword()
+    {
+        yield return new WaitForSeconds(0.65f);
+        swordSound.Play();
     }
 
     IEnumerator cooldown()
@@ -183,6 +200,7 @@ public class Izanagi : MonoBehaviour
                 m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, height, 0);
                 grounded = false;
                 anim.SetTrigger("jump");
+                jumpSound.Play();
             }
             else
             {
@@ -274,11 +292,11 @@ public class Izanagi : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name == "Axe")
-        {
-            Debug.Log(string.Format("{0} gets hit", gameObject.name));
-            anim.SetTrigger("die");
-            StartCoroutine("Die");
-        }
+        //if (col.gameObject.name == "Axe")
+        //{
+        //    Debug.Log(string.Format("{0} gets hit", gameObject.name));
+        //    anim.SetTrigger("die");
+        //    StartCoroutine("Die");
+        //}
     }
 }

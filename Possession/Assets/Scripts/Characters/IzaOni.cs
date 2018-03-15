@@ -20,6 +20,7 @@ public class IzaOni : Izanami {
     Vector3 end;
     public Quaternion orot;
     public Quaternion orot2;
+    AudioSource axeSound;
 
     // Use this for initialization
     public override void Start () {
@@ -40,6 +41,7 @@ public class IzaOni : Izanami {
 
         orot.eulerAngles = new Vector3(0f, 90f, 0f);    
         orot2.eulerAngles = new Vector3(0f, -90f, 0f);
+        axeSound = GameObject.Find("AxeSound").GetComponent<AudioSource>();
         //if (this.transform.rotation == orot2)
         //{
         //    orot.eulerAngles = new Vector3(0, -90, 0);
@@ -79,9 +81,16 @@ public class IzaOni : Izanami {
         yield return new WaitForSeconds(0.5f);
         m_axe.GetComponent<Axe>().isAttacking = true;
         yield return new WaitForSeconds(0.5f);
+        StartCoroutine("playAxe");
         m_axe.GetComponent<Axe>().isAttacking = false;
         yield return new WaitForSeconds(1f);
         m_axe.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    IEnumerator playAxe()
+    {
+        yield return new WaitForSeconds(0.5f);
+        axeSound.Play();
     }
 
     IEnumerator cooldown()
