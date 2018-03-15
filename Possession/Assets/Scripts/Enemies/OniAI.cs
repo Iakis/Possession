@@ -11,6 +11,7 @@ public class OniAI : MonoBehaviour
     public Shader myShader;
     private Renderer rend;
 
+	public bool hasBeenPossessed = false;
     public int health = 0;
     Transform m_axe;
     Animator anim;
@@ -72,7 +73,6 @@ public class OniAI : MonoBehaviour
             {
                 rend.material.shader = originShader;
             }
-			halo.GetType ().GetProperty ("enabled").SetValue (halo, true, null);
             return;
         } else
         {
@@ -158,8 +158,9 @@ public class OniAI : MonoBehaviour
         }
     }
 
-    IEnumerator die()
+    public IEnumerator die()
     {
+		Debug.Log ("Oni died");
         end = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
         this.gameObject.layer = 10;
         this.GetComponent<CapsuleCollider>().isTrigger = true;
@@ -167,7 +168,9 @@ public class OniAI : MonoBehaviour
         StartCoroutine("playFalling");
         yield return new WaitForSeconds(1f);
         dead = true;
-        m_axe.GetComponent<BoxCollider>().enabled = false;
+		// If bool is set then disable gameobject
+		m_axe.GetComponent<BoxCollider> ().enabled = false;
+		halo.GetType ().GetProperty ("enabled").SetValue (halo, true, null);
     }
 
     IEnumerator playFalling()

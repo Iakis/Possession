@@ -7,6 +7,7 @@ public class IzaOni : Izanami {
     string test = "watwtwer";
     static IzaOni s_izaoni;
     static Izanagi m_izanagi;
+	public GameObject izanami;
     GameObject m_axe;
 
     bool opress;
@@ -36,7 +37,7 @@ public class IzaOni : Izanami {
         oanim = GetComponent<Animator>();
         grounded = true;
         m_axe = GameObject.Find("Axe");
-        end = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+		end = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
         reviving = true;
 
         orot.eulerAngles = new Vector3(0f, 90f, 0f);    
@@ -155,12 +156,17 @@ public class IzaOni : Izanami {
     {
         if (Input.GetButtonUp("NamiInteract"))
         {
-            oanim.SetTrigger("die");
-            GameObject go = (GameObject)Instantiate(Resources.Load("Izanami", typeof(GameObject)), this.gameObject.transform.position, this.gameObject.transform.rotation);
+            //GameObject go = (GameObject)Instantiate(Resources.Load("Izanami", typeof(GameObject)), this.gameObject.transform.position, this.gameObject.transform.rotation);
+			// Set Izanami to active and set position to this position
+			izanami.SetActive (true);
+			izanami.transform.position = this.transform.position;
             this.gameObject.GetComponent<IzaOni>().enabled = false;
             this.gameObject.GetComponent<OniAI>().enabled = true;
             m_axe.GetComponent<BoxCollider>().enabled = false;
+			Debug.Log ("Unposessing Oni");
+			this.GetComponent<Animator>().SetTrigger("die");
+			this.gameObject.SetActive (false);
+			//StartCoroutine(this.gameObject.GetComponent<OniAI>().die());
         }
     }
-
 }

@@ -45,8 +45,12 @@ public class Possess : MonoBehaviour {
     {
         if (Input.GetButtonUp("NamiInteract"))
         {
-            if (host != null)
+			// Check if host tag is oni
+			if (host != null && host.CompareTag("Oni") && host.GetComponent<OniAI>().hasBeenPossessed == false)
             {
+				Debug.Log ("Hosts: ");
+				Debug.Log (host);
+				Debug.Log ("Possessing Oni");
                 //DoorScript m_door = DoorScript.Get();
                 //Debug.Log(host);
                 //m_door.player = host.transform;
@@ -55,12 +59,17 @@ public class Possess : MonoBehaviour {
                 //cam.player = host;
                 host.AddComponent<IzaOni>().enabled = true;
                 //host.GetComponent<IzaOni>().Start();
+				host.GetComponent<OniAI>().hasBeenPossessed = true;
                 host.GetComponent<OniAI>().enabled = false;
                 //host.transform.rotation = this.transform.rotation;
                 host.GetComponent<Animator>().SetBool("die", false);
                 host.GetComponent<Animator>().SetBool("revive", true);
-                Destroy(this.gameObject);
 
+				// Get rid of halo
+				host.GetComponent ("Halo").GetType ().GetProperty ("enabled").SetValue (host.GetComponent ("Halo"), false, null);
+                //Destroy(this.gameObject);
+				host.GetComponent<IzaOni>().izanami = this.gameObject;
+				this.gameObject.SetActive(false);
             }
         } 
     }
