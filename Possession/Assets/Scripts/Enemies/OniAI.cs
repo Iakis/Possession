@@ -25,8 +25,10 @@ public class OniAI : MonoBehaviour
     bool detected;
     bool CD;
     Vector3 target;
+    AudioSource axeSound;
+    AudioSource fallSound;
 
-	Component halo;
+    Component halo;
 
 
     // Use this for initialization
@@ -47,6 +49,8 @@ public class OniAI : MonoBehaviour
         rend = transform.GetChild(0).GetComponent<Renderer>();
         myShader = Shader.Find("Outlined/Silhouetted Diffuse");
 		halo = GetComponent ("Halo");
+        axeSound = GameObject.Find("AxeSound").GetComponent<AudioSource>();
+        fallSound = GameObject.Find("OniFallSound").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -108,9 +112,16 @@ public class OniAI : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         m_axe.GetComponent<BoxCollider>().enabled = true;
+        StartCoroutine("playAxe");
         yield return new WaitForSeconds(0.5f);
         m_axe.GetComponent<BoxCollider>().enabled = false;
         
+    }
+
+    IEnumerator playAxe()
+    {
+        yield return new WaitForSeconds(0.5f);
+        axeSound.Play();
     }
 
     IEnumerator DetectPlayer()
@@ -153,9 +164,16 @@ public class OniAI : MonoBehaviour
         this.gameObject.layer = 10;
         this.GetComponent<CapsuleCollider>().isTrigger = true;
         anim.SetTrigger("die");
+        StartCoroutine("playFalling");
         yield return new WaitForSeconds(1f);
         dead = true;
         m_axe.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    IEnumerator playFalling()
+    {
+        yield return new WaitForSeconds(2f);
+        fallSound.Play();
     }
 
     IEnumerator hit()
